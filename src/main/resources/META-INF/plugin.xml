@@ -1,0 +1,37 @@
+<idea-plugin>
+    <id>me.bytebeats.polyglot</id>
+    <name>Polyglot</name>
+    <version>1.0.0</version>
+    <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
+
+    <description><![CDATA[
+      Polyglot: I can speak a lot of languages! I can work with you as a TRANSLATOR!
+      An Intellij platform plugin project.
+      If your project is relevant to many languages in which translation is needed, this plugin will help you a lot.
+      一个 Intellij 插件项目, 当工程需要支持多语言时, 本插件能够帮助你省去在浏览器或者翻译软件与你的项目之间来回切换的麻烦.
+      A good plugin is No.1 productive force. 插件是第一生产力啊!
+      project url: https://github.com/bytebeats/polyglot
+    ]]></description>
+
+    <change-notes><![CDATA[
+      v1.0.0 支持简体和繁体转换.<br>
+      v1.1.0 支持选择台湾繁体和香港繁体的转换.<br>
+    ]]>
+    </change-notes>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0" until-build="202.*" />
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+</idea-plugin>

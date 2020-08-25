@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.4.21'
+}
+
+group 'me.bytebeats'
+version '1.0.0'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version '2020.2'
+}
+patchPluginXml {
+    changeNotes """
+      v1.0.0 支持简体和繁体转换.<br>
+      v1.1.0 支持选择台湾繁体和香港繁体的转换.<br>
+      """
+}
