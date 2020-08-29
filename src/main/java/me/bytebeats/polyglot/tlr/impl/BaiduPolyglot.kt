@@ -22,20 +22,36 @@ import javax.script.ScriptException
  * @description BaiduPolyglot depends on baidu to offer translation service.
  */
 
-class BaiduPolyglot : AbstractPolyglot(URL) {
+class BaiduPolyglot() : AbstractPolyglot(URL) {
     companion object {
         private const val URL = "https://fanyi.baidu.com/v2transapi"
     }
 
     override fun addSupportedLanguages() {
         langs[Lang.ZH] = "zh"
+        langs[Lang.CHT] = "cht"
+        langs[Lang.YUE] = "yue"
+        langs[Lang.WYW] = "wyw"
         langs[Lang.EN] = "en"
         langs[Lang.JP] = "jp"
         langs[Lang.KOR] = "kor"
         langs[Lang.FRA] = "fra"
         langs[Lang.RU] = "ru"
         langs[Lang.DE] = "de"
-        langs[Lang.CHT] = "cht"
+        langs[Lang.SPA] = "spa"
+        langs[Lang.PT] = "pt"
+        langs[Lang.TR] = "tr"
+        langs[Lang.IT] = "it"
+        //dead languages or virtual languages
+        langs[Lang.SAN] = "san"
+        langs[Lang.ARG] = "arg"
+        langs[Lang.GRA] = "gra"
+        langs[Lang.KLI] = "kli"
+        langs[Lang.HEB] = "heb"
+        langs[Lang.ENO] = "eno"
+        langs[Lang.FRM] = "frm"
+        langs[Lang.PER] = "per"
+
     }
 
     /**

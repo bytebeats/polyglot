@@ -17,7 +17,7 @@ import org.apache.http.util.EntityUtils
  * @description TencentPolyglot depends on Tencent/QQ to offer translation service
  */
 
-class TencentPolyglot : AbstractPolyglot(URL) {
+class TencentPolyglot() : AbstractPolyglot(URL) {
     companion object {
         private const val URL = "https://fanyi.qq.com/api/translate"
     }
@@ -30,6 +30,16 @@ class TencentPolyglot : AbstractPolyglot(URL) {
         langs[Lang.FRA] = "fr"
         langs[Lang.RU] = "ru"
         langs[Lang.DE] = "de"
+        langs[Lang.SPA] = "es"
+        langs[Lang.IT] = "it"
+        langs[Lang.TR] = "tr"
+        langs[Lang.PT] = "pt"
+        langs[Lang.VIE] = "vi"
+        langs[Lang.ID] = "id"
+        langs[Lang.TH] = "th"
+        langs[Lang.MS] = "ms"
+        langs[Lang.ARA] = "ar"
+        langs[Lang.HI] = "hi"
     }
 
     /**

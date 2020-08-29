@@ -3,6 +3,7 @@ package me.bytebeats.polyglot
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.impl.BaiduPolyglot
 import me.bytebeats.polyglot.tlr.impl.TencentPolyglot
+import me.bytebeats.polyglot.tlr.impl.YouDaoPolyglot
 
 /**
  * @author bytebeats
@@ -25,6 +26,9 @@ class Main {
             val tencent = TencentPolyglot()
             println("Tencent")
             println(tencent.execute(Lang.ZH, Lang.FRA, "德意志"))
+            println("YouDao")
+            val youdao = YouDaoPolyglot()
+            println(youdao.execute(Lang.ZH, Lang.EN, "德意志"))
         }
     }
 }
