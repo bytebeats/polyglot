@@ -28,14 +28,14 @@ class BaiduPolyglot : AbstractPolyglot(URL) {
     }
 
     override fun addSupportedLanguages() {
-        langs.add(Lang.ZH)
-        langs.add(Lang.EN)
-        langs.add(Lang.JP)
-        langs.add(Lang.KOR)
-        langs.add(Lang.FRA)
-        langs.add(Lang.RU)
-        langs.add(Lang.DE)
-        langs.add(Lang.CHT)
+        langs[Lang.ZH] = "zh"
+        langs[Lang.EN] = "en"
+        langs[Lang.JP] = "jp"
+        langs[Lang.KOR] = "kor"
+        langs[Lang.FRA] = "fra"
+        langs[Lang.RU] = "ru"
+        langs[Lang.DE] = "de"
+        langs[Lang.CHT] = "cht"
     }
 
     override fun parse(translatedRaw: String): String {
@@ -73,8 +73,8 @@ class BaiduPolyglot : AbstractPolyglot(URL) {
     }
 
     override fun setFormData(from: Lang, to: Lang, text: String) {
-        formData["from"] = from.lang
-        formData["to"] = to.lang
+        formData["from"] = langs[from]!!
+        formData["to"] = langs[to]!!
         formData["query"] = text
         formData["transtype"] = "translang"
         formData["simple_means_flag"] = "3"

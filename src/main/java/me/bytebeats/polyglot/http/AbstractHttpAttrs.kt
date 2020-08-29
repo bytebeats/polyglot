@@ -21,7 +21,7 @@ import java.io.IOException
 abstract class AbstractHttpAttrs(
     open val url: String,
     val formData: MutableMap<String, String> = mutableMapOf(),
-    val langs: MutableSet<Lang> = mutableSetOf(),
+    val langs: MutableMap<Lang, String> = mutableMapOf(),
     val httpClient: CloseableHttpClient = HttpClients.createDefault()
 ) : TranslationExecutor {
 
