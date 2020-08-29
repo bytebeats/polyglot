@@ -44,10 +44,10 @@ abstract class AbstractPolyglot(url: String) : AbstractHttpAttrs(url), GlotHttpP
     /**
      * Parse the string to extract the content of interest.
      *
-     * @param text the string form of the translated result.
+     * @param text the string form of the to-be-translated result.
      * @return translation results after parsing.
      * @throws IOException if the parsing fails.
      */
     @Throws(IOException::class)
-    abstract fun parse(translatedRaw: String): String
+    abstract fun parse(text: String): String
 }

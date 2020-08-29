@@ -19,7 +19,7 @@ import javax.script.ScriptException
  * @github https://github.com/bytebeats
  * @created on 2020/8/27 15:56
  * @version 1.0
- * @description TO-DO
+ * @description BaiduPolyglot depends on baidu to offer translation service.
  */
 
 class BaiduPolyglot : AbstractPolyglot(URL) {
@@ -38,9 +38,14 @@ class BaiduPolyglot : AbstractPolyglot(URL) {
         langs[Lang.CHT] = "cht"
     }
 
-    override fun parse(translatedRaw: String): String {
+    /**
+     * {"trans_result":{"data":[{"dst":"\u4e0a\u5e1d\uff0c\u4f60\u5728\u8003\u9a8c\u6211\u5417\uff1f","prefixWrap":0,"result":[[0,"\u4e0a\u5e1d\uff0c\u4f60\u5728\u8003\u9a8c\u6211\u5417\uff1f",["0|24"],[],["0|24"],["0|30"]]],"src":"God, are you testing me?"}],"from":"en","status":0,"to":"zh","type":2,"phonetic":[{"src_str":"\u4e0a","trg_str":"sh\u00e0ng"},{"src_str":"\u5e1d","trg_str":"d\u00ec"},{"src_str":"\uff0c","trg_str":" "},{"src_str":"\u4f60","trg_str":"n\u01d0"},{"src_str":"\u5728","trg_str":"z\u00e0i"},{"src_str":"\u8003","trg_str":"k\u01ceo"},{"src_str":"\u9a8c","trg_str":"y\u00e0n"},{"src_str":"\u6211","trg_str":"w\u01d2"},{"src_str":"\u5417","trg_str":"ma"},{"src_str":"\uff1f","trg_str":" "}],"keywords":[{"means":["\u795e","\u4e0a\u5e1d","\u5929\u4e3b"],"word":"God"},{"means":["\u8bd5\u9a8c","\u6d4b\u8bd5","\u68c0\u67e5","\u68d8\u624b\u7684","\u4f24\u8111\u7b4b\u7684","\u96be\u5e94\u4ed8\u7684","\u6d4b\u9a8c","\u8003\u67e5","\u5316\u9a8c","\u68c0\u9a8c","test\u7684\u73b0\u5728\u5206\u8bcd"],"word":"testing"}]},
+     * "liju_result":{"double":"","single":""},
+     * "logid":2220363170}
+     */
+    override fun parse(text: String): String {
         val mapper = ObjectMapper()
-        val result = mapper.readTree(translatedRaw).path("trans_result").findValuesAsText("dst")
+        val result = mapper.readTree(text).path("trans_result").findValuesAsText("dst")
         if (result != null) {
             val des = StringBuilder()
             for (s in result) {
@@ -68,6 +73,7 @@ class BaiduPolyglot : AbstractPolyglot(URL) {
         val response = httpClient.execute(request)
         val entity = response.entity
         val result = EntityUtils.toString(entity, "UTF-8")
+//        println(result)
         close(entity, response)
         return result
     }
