@@ -2,6 +2,7 @@ package me.bytebeats.polyglot
 
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.impl.BaiduPolyglot
+import me.bytebeats.polyglot.tlr.impl.TencentPolyglot
 
 /**
  * @author bytebeats
@@ -16,10 +17,14 @@ class Main {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val polyglot = BaiduPolyglot()
-//            println(polyglot.execute(Lang.EN, Lang.ZH, "God, are you testing me?"))
-//            println(polyglot.execute(Lang.EN, Lang.CHT, "God, are you testing me?"))
-            println(polyglot.execute(Lang.EN, Lang.JP, "God, are you testing me?"))
+            val baidu = BaiduPolyglot()
+            println("Baidu")
+            println(baidu.execute(Lang.EN, Lang.ZH, "God, are you testing me?"))
+            println(baidu.execute(Lang.EN, Lang.CHT, "God, are you testing me?"))
+            println(baidu.execute(Lang.EN, Lang.JP, "God, are you testing me?"))
+            val tencent = TencentPolyglot()
+            println("Tencent")
+            println(tencent.execute(Lang.ZH, Lang.FRA, "德意志"))
         }
     }
 }

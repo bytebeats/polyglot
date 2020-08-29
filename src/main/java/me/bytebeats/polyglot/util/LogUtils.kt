@@ -26,6 +26,7 @@ class LogUtils {
                 NotificationGroup("polyglot", NotificationDisplayType.NONE, true)
                     .createNotification(message, MessageType.INFO).notify(project)
             }
+            println(message)
         }
     }
 }
