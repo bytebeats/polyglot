@@ -16,6 +16,7 @@ enum class Lang(val lang: String, val desc: String) {
     JP("jp", "日语"),
     FRA("fra", "法语"),
     SPA("spa", "西班牙语"),
+    PT("pt", "葡萄牙语"),
     KOR("kor", "韩语"),
     TR("tr", "土耳其语"),
     DE("de", "德语"),
@@ -26,7 +27,9 @@ enum class Lang(val lang: String, val desc: String) {
     YUE("yue", "粤语"),
     TH("th", "泰语"),
     VIE("vie", "越南语"),
+    ID("id", "印尼语"),
     MS("ms", "马来语"),
+    HI("hi", "印地语"),
     IR("ir", "伊朗语"),
     WYW("wyw", "文言文"),
     CHT("cht", "中文繁体"),
@@ -46,5 +49,6 @@ enum class Lang(val lang: String, val desc: String) {
     KLI("kli", "克林贡语"),
     HEB("heb", "希伯来语"),
     ENO("eno", "古英语"),
+    FRM("frm", "中古法语"),
     PER("per", "波斯语");
 }
