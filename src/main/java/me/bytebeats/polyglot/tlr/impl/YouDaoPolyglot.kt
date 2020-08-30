@@ -1,9 +1,11 @@
 package me.bytebeats.polyglot.tlr.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import me.bytebeats.polyglot.http.GlotHttpParams
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.AbstractPolyglot
 import me.bytebeats.polyglot.util.ParamUtils
+import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.util.EntityUtils
 
@@ -57,7 +59,9 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
     }
 
     override fun query(): String {
-        val request = HttpPost(ParamUtils.concatUrl(URL, formData))
+//        val request = HttpPost(ParamUtils.concatUrl(URL, formData))
+        val request = HttpPost(url)
+        request.entity = UrlEncodedFormEntity(ParamUtils.map2List(formData), "UTF-8")
 //        request.addHeader("Cookie", "OUTFOX_SEARCH_USER_ID=1541101350@10.108.160.105;")
         request.addHeader(
             "Cookie",
@@ -66,21 +70,18 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
         request.setHeader("Host", "fanyi.youdao.com")
         request.setHeader("Origin", "http://fanyi.youdao.com")
         request.addHeader("Referer", "http://fanyi.youdao.com/")
-        request.addHeader(
-            "User-Agent",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"
-        )
+        request.addHeader("User-Agent", GlotHttpParams.USER_AGENT)
 
         val response = httpClient.execute(request)
         val entity = response.entity
         val result = EntityUtils.toString(entity, "UTF-8")
-//        println(result)
+        println(result)
         close(entity, response)
         return result
     }
 
     override fun setFormData(from: Lang, to: Lang, text: String) {
-        val salt = (System.currentTimeMillis()).toString()
+        val salt = (System.currentTimeMillis() + (Math.random() * 10 + 1).toLong()).toString()
         val client = "fanyideskweb"
         formData["i"] = text
         formData["from"] = langs[from]!!
