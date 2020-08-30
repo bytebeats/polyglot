@@ -1,6 +1,7 @@
 package me.bytebeats.polyglot.tlr.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import me.bytebeats.polyglot.http.GlotHttpParams
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.AbstractPolyglot
 import me.bytebeats.polyglot.util.ParamUtils
@@ -69,10 +70,7 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
         request.setHeader("Host", "fanyi.youdao.com")
         request.setHeader("Origin", "http://fanyi.youdao.com")
         request.addHeader("Referer", "http://fanyi.youdao.com/")
-        request.addHeader(
-            "User-Agent",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"
-        )
+        request.addHeader("User-Agent", GlotHttpParams.USER_AGENT)
 
         val response = httpClient.execute(request)
         val entity = response.entity
