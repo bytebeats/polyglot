@@ -61,7 +61,7 @@ class ParamUtils {
             if (input == null) return null
             try {
                 val msgDigest = MessageDigest.getInstance("MD5")
-                val inputBytes = input.toByteArray(Charset.forName("UTF-8"))
+                val inputBytes = input.toByteArray(Charsets.UTF_8)
                 msgDigest.update(inputBytes)
                 val md5Bytes = msgDigest.digest()
                 return bytes2Hex(md5Bytes)
@@ -77,7 +77,7 @@ class ParamUtils {
             val chars = CharArray(bytes.size * 2)
             var idx = 0
             for (b in bytes) {
-                chars[idx++] = hexDigits[(b.toInt() shl 4) and 0xf]
+                chars[idx++] = hexDigits[(b.toInt() shr 4) and 0xf]
                 chars[idx++] = hexDigits[b.toInt() and 0xf]
             }
             return String(chars)
