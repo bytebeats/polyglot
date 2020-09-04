@@ -42,30 +42,39 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
         langs[Lang.NL] = "nl"
     }
 
+    /**
+     * {
+    "translateResult": [
+    [
+    {
+    "tgt": "The tortoise",
+    "src": "乌龟"
+    }
+    ]
+    ],
+    "errorCode": 0,
+    "type": "zh-CHS2en",
+    "smartResult": {
+    "entries": [
+    "",
+    "[脊椎] tortoise\r\n"
+    ],
+    "type": 1
+    }
+    }
+     */
     override fun parse(text: String): String {
         val mapper = ObjectMapper()
-        val result = mapper.readTree(text).path("translateResult").findValuesAsText("tgt")
-        if (result.isNullOrEmpty()) {
-            return ""
-        }
-        val dst = StringBuilder()
-        for (v in result) {
-            if (dst.isNotEmpty()) {
-                dst.append("\n")
-            }
-            dst.append(v)
-        }
-        return dst.toString()
+        val result = mapper.readTree(text).path("translateResult")[0][0].get("tgt").asText()
+        return result
     }
 
     override fun query(): String {
-//        val request = HttpPost(ParamUtils.concatUrl(URL, formData))
         val request = HttpPost(url)
         request.entity = UrlEncodedFormEntity(ParamUtils.map2List(formData), "UTF-8")
-//        request.addHeader("Cookie", "OUTFOX_SEARCH_USER_ID=1541101350@10.108.160.105;")
         request.addHeader(
             "Cookie",
-            "OUTFOX_SEARCH_USER_ID=1541101350@10.108.160.105; JSESSIONID=aaaRkwXJWDDOnaNJOQ5qx; OUTFOX_SEARCH_USER_ID_NCOO=1678950924.2441375; ___rl__test__cookies=1598697428158"
+            "OUTFOX_SEARCH_USER_ID=1541101350@10.108.160.105; JSESSIONID=aaaRkwXJWDDOnaNJOQ5qx; OUTFOX_SEARCH_USER_ID_NCOO=1678950924.2441375; ___rl__test__cookies=${System.currentTimeMillis()}"
         )
         request.setHeader("Host", "fanyi.youdao.com")
         request.setHeader("Origin", "http://fanyi.youdao.com")
@@ -75,26 +84,29 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
         val response = httpClient.execute(request)
         val entity = response.entity
         val result = EntityUtils.toString(entity, "UTF-8")
-        println(result)
+//        println(result)
         close(entity, response)
         return result
     }
 
     override fun setFormData(from: Lang, to: Lang, text: String) {
-        val salt = (System.currentTimeMillis() + (Math.random() * 10 + 1).toLong()).toString()
+        val ts = System.currentTimeMillis().toString()//timestamp
+        val salt = "$ts${(10 * Math.random()).toInt()}"
         val client = "fanyideskweb"
         formData["i"] = text
         formData["from"] = langs[from]!!
         formData["to"] = langs[to]!!
-        formData["smartresult"] = "dict"
         formData["client"] = client
-        formData["salt"] = salt
-        formData["Its"] = salt.substring(0, salt.length - 1)
-        formData["sign"] = ParamUtils.md5("${client}${text}${salt}ebSeFb%=XZ%T[KZ)c(sy!") ?: ""
+        formData["salt"] = salt//salt
+        formData["sign"] = ParamUtils.md5("${client}${text}${salt}]BjuETDhU)zqSxf-=B#7m") ?: ""//sign
+        formData["lts"] = ts//ts
+        formData["bv"] =
+            ParamUtils.md5(GlotHttpParams.USER_AGENT.substring(GlotHttpParams.USER_AGENT.indexOf('/') + 1))!!//bv
         formData["doctype"] = "json"
         formData["version"] = "2.1"
         formData["keyfrom"] = "fanyi.web"
         formData["action"] = "FY_BY_CLICKBUTTON"
+        formData["smartresult"] = "dict"
         formData["typoResult"] = "false"
     }
 }

@@ -72,7 +72,7 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
     "text": "忧郁的小乌龟",
     "to": "en",
     "id": "a0761c8f8d35a43b130976bb5718504c",
-    "dit": "N3SMlgSwlXdb6axSP9",
+    "dit": "憂鬱的小烏龜",
     "orig_text": "忧郁的小乌龟",
     "md5": ""
     }
@@ -83,9 +83,9 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
     }
      */
     override fun query(): String {
-//        val request = HttpPost(url)
-//        request.entity = UrlEncodedFormEntity(ParamUtils.map2List(formData), "UTF-8")
-        val request = HttpPost(ParamUtils.concatUrl(url, formData))
+        val request = HttpPost(url)
+        request.entity = UrlEncodedFormEntity(ParamUtils.map2List(formData), "UTF-8")
+//        val request = HttpPost(ParamUtils.concatUrl(url, formData))
         request.setHeader("Host", "fanyi.sogou.com")
         request.setHeader("Origin", "https://fanyi.sogou.com")
         //Referer really mattered. It's very important
@@ -103,7 +103,7 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
         val response = httpClient.execute(request)
         val entity = response.entity
         val result = EntityUtils.toString(entity, "UTF-8")
-        println(result)
+//        println(result)
         close(entity, response)
         return result
     }
@@ -111,11 +111,11 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
     override fun setFormData(from: Lang, to: Lang, text: String) {
         formData["from"] = langs[from]!!
         formData["to"] = langs[to]!!
+        formData["text"] = text.trim()
         formData["client"] = "pc"
         formData["fr"] = "browser_pc"
-        formData["text"] = text
         formData["useDetect"] = "on"
-        formData["useDetectResult"] = if (from == Lang.AUTO) "on" else "off"
+//        formData["useDetectResult"] = if (from == Lang.AUTO) "on" else "off"
         formData["needQc"] = "1"
         formData["uuid"] = token()
         formData["oxford"] = "on"
@@ -123,16 +123,8 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
         formData["second_query"] = "true"
         formData["dict"] = "true"
         formData["pid"] = "sogou-dict-vr"
-        formData["isReturnSugg"] = "on"
-//        formData["s"] = ParamUtils.md5(text)!!
-
-        /**
-         * "忧郁的小乌龟"
-         * 跟
-         * "80e7e384d7fd6ad110b76acb121b084a"
-         * 之间到底是什么关系? 到底是什么加密方式?
-         */
-        formData["s"] = "80e7e384d7fd6ad110b76acb121b084a"
+//        formData["isReturnSugg"] = "on"
+        formData["s"] = ParamUtils.md5("${langs[from]!!}${langs[to]!!}${text.trim()}8511813095152")!!
     }
 
     private fun token(): String {
