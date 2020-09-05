@@ -65,7 +65,7 @@ class BingPolyglot() : AbstractPolyglot(URL) {
         return result
     }
 
-    override fun setFormData(from: Lang, to: Lang, text: String) {
+    override fun addFormData(from: Lang, to: Lang, text: String) {
         formData["fromLang"] = langs[from]!!
         formData["to"] = langs[to]!!
         formData["text"] = text

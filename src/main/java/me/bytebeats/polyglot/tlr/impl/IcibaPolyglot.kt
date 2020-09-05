@@ -1,11 +1,10 @@
 package me.bytebeats.polyglot.tlr.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import me.bytebeats.polyglot.http.GlotHttpParams
+import me.bytebeats.polyglot.http.FormDataAdder
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.AbstractPolyglot
 import me.bytebeats.polyglot.util.ParamUtils
-import org.apache.http.client.entity.EntityBuilder
 import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.util.EntityUtils
@@ -71,7 +70,7 @@ class IcibaPolyglot() : AbstractPolyglot(URL) {
         request.setHeader("Host", "ifanyi.iciba.com")
         request.setHeader("Origin", "http://www.iciba.com")
         request.addHeader("Referer", "http://www.iciba.com/fy")
-        request.addHeader("User-Agent", GlotHttpParams.USER_AGENT)
+        request.addHeader("User-Agent", FormDataAdder.USER_AGENT)
         val response = httpClient.execute(request)
         val entity = response.entity
         val result = EntityUtils.toString(entity, "utf-8")
@@ -80,7 +79,7 @@ class IcibaPolyglot() : AbstractPolyglot(URL) {
         return result
     }
 
-    override fun setFormData(from: Lang, to: Lang, text: String) {
+    override fun addFormData(from: Lang, to: Lang, text: String) {
         formData["from"] = langs[from]!!
         formData["to"] = langs[to]!!
         formData["q"] = text.trim()

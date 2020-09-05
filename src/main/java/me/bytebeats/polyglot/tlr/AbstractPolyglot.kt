@@ -1,9 +1,12 @@
 package me.bytebeats.polyglot.tlr
 
 import me.bytebeats.polyglot.util.LogUtils
-import me.bytebeats.polyglot.http.AbstractHttpAttrs
-import me.bytebeats.polyglot.http.GlotHttpParams
+import me.bytebeats.polyglot.http.HttpEntityCloser
+import me.bytebeats.polyglot.http.FormDataAdder
+import me.bytebeats.polyglot.http.ITranslator
 import me.bytebeats.polyglot.lang.Lang
+import me.bytebeats.polyglot.tlr.impl.*
+import me.bytebeats.polyglot.util.StringResource
 import java.io.IOException
 
 /**
@@ -18,7 +21,7 @@ import java.io.IOException
  * result to achieve the the purpose of translation.
  */
 
-abstract class AbstractPolyglot(url: String) : AbstractHttpAttrs(url), GlotHttpParams {
+abstract class AbstractPolyglot(url: String) : HttpEntityCloser(url), FormDataAdder, ITranslator {
     init {
         addSupportedLanguages()
     }
@@ -28,9 +31,9 @@ abstract class AbstractPolyglot(url: String) : AbstractHttpAttrs(url), GlotHttpP
      */
     abstract fun addSupportedLanguages()
 
-    override fun execute(from: Lang, to: Lang, text: String): String {
+    override fun translate(from: Lang, to: Lang, text: String): String {
         var result = ""
-        setFormData(from, to, text)
+        addFormData(from, to, text)
         try {
             result = parse(query())
         } catch (e: Exception) {
@@ -50,4 +53,28 @@ abstract class AbstractPolyglot(url: String) : AbstractHttpAttrs(url), GlotHttpP
      */
     @Throws(IOException::class)
     abstract fun parse(text: String): String
+
+    /**
+     * Execute the translation or TTS task (send a POST or GET request to the server),
+     * receive the result of translation or speech conversion., and return the content
+     * or save file name as string.
+     *
+     * @return the string form of the translated result.
+     * @throws Exception if the request fails
+     */
+    @Throws(Exception::class)
+    abstract fun query(): String
+
+    companion object PolyglotFactory {
+        fun newInstance(polyglot: String): AbstractPolyglot =
+            when (polyglot) {
+                StringResource.POLYGLOT_BING -> BingPolyglot()
+                StringResource.POLYGLOT_GOOGLE -> GooglePolyglot()
+                StringResource.POLYGLOT_OMI -> OmiPolyglot()
+                StringResource.POLYGLOT_SOGOU -> SogouPolyglot()
+                StringResource.POLYGLOT_TENCENT -> TencentPolyglot()
+                StringResource.POLYGLOT_YOUDAO -> YouDaoPolyglot()
+                else -> BaiduPolyglot()
+            }
+    }
 }

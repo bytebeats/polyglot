@@ -56,7 +56,7 @@ class TrycanPolyglot() : AbstractPolyglot(URL) {
         return result
     }
 
-    override fun setFormData(from: Lang, to: Lang, text: String) {
+    override fun addFormData(from: Lang, to: Lang, text: String) {
         formData["word_from"] = langs[from]!!
         formData["word_to"] = langs[to]!!
         formData["word_src"] = text
