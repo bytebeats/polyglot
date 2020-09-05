@@ -65,7 +65,7 @@ class GooglePolyglot() : AbstractPolyglot(URL) {
         return result
     }
 
-    override fun setFormData(from: Lang, to: Lang, text: String) {
+    override fun addFormData(from: Lang, to: Lang, text: String) {
         formData["client"] = "t"
         formData["sl"] = langs[from]!!
         formData["tl"] = langs[to]!!

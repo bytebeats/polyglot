@@ -1,7 +1,7 @@
 package me.bytebeats.polyglot.tlr.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import me.bytebeats.polyglot.http.GlotHttpParams
+import me.bytebeats.polyglot.http.FormDataAdder
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.AbstractPolyglot
 import me.bytebeats.polyglot.util.GlotJsUtils
@@ -10,7 +10,6 @@ import me.bytebeats.polyglot.util.ParamUtils
 import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.util.EntityUtils
-import java.util.*
 import javax.script.Invocable
 import javax.script.ScriptEngineManager
 
@@ -94,7 +93,7 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
             "https://fanyi.sogou.com/?keyword=${formData["text"]}&transfrom=${formData["from"]}&transto=${formData["to"]}"
         )
         //It's very important
-        request.setHeader("User-Agent", GlotHttpParams.USER_AGENT)
+        request.setHeader("User-Agent", FormDataAdder.USER_AGENT)
         //It's very important
         request.setHeader(
             "Cookie",
@@ -108,7 +107,7 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
         return result
     }
 
-    override fun setFormData(from: Lang, to: Lang, text: String) {
+    override fun addFormData(from: Lang, to: Lang, text: String) {
         formData["from"] = langs[from]!!
         formData["to"] = langs[to]!!
         formData["text"] = text.trim()

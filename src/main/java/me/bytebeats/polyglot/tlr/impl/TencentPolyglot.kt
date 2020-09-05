@@ -89,7 +89,7 @@ class TencentPolyglot() : AbstractPolyglot(URL) {
         return result
     }
 
-    override fun setFormData(from: Lang, to: Lang, text: String) {
+    override fun addFormData(from: Lang, to: Lang, text: String) {
         formData["source"] = langs[from]!!
         formData["target"] = langs[to]!!
         formData["sourceText"] = text

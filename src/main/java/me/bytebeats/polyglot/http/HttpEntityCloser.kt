@@ -15,15 +15,15 @@ import java.io.IOException
  * @github https://github.com/bytebeats
  * @created on 2020/8/27 15:14
  * @version 1.0
- * @description AbstractHttpAttrs is an abstract base class associated with HTTP.
+ * @description HttpEntityCloser is an abstract base class associated with HTTP.
  */
 
-abstract class AbstractHttpAttrs(
+abstract class HttpEntityCloser(
     open val url: String,
     val formData: MutableMap<String, String> = mutableMapOf(),
     val langs: MutableMap<Lang, String> = mutableMapOf(),
     val httpClient: CloseableHttpClient = HttpClients.createDefault()
-) : TranslationExecutor {
+) {
 
     /**
      * Release and close the resources of HTTP

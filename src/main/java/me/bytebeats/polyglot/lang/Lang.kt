@@ -1,5 +1,7 @@
 package me.bytebeats.polyglot.lang
 
+import me.bytebeats.polyglot.util.StringResource
+
 /**
  * @author bytebeats
  * @email <happychinapc@gmail.com>
@@ -10,45 +12,59 @@ package me.bytebeats.polyglot.lang
  */
 
 enum class Lang(val lang: String, val desc: String) {
-    AUTO("auto", "自动检测语种"),
-    ZH("zh", "中文"),
-    EN("en", "英语"),
-    JP("jp", "日语"),
-    FRA("fra", "法语"),
-    SPA("spa", "西班牙语"),
-    PT("pt", "葡萄牙语"),
-    KOR("kor", "韩语"),
-    TR("tr", "土耳其语"),
-    DE("de", "德语"),
-    RU("ru", "俄语"),
-    ARA("ara", "阿拉伯语"),
-    PL("pl", "波兰语"),
-    DAN("dan", "丹麦语"),
-    YUE("yue", "粤语"),
-    TH("th", "泰语"),
-    VIE("vie", "越南语"),
-    ID("id", "印尼语"),
-    MS("ms", "马来语"),
-    HI("hi", "印地语"),
-    IR("ir", "伊朗语"),
-    WYW("wyw", "文言文"),
-    CHT("cht", "中文繁体"),
-    IT("it", "意大利语"),
-    KK("kk", "哈萨克语"),
-    TL("tl", "菲律宾语"),
-    ICE("ice", "冰岛语"),
-    FIN("fin", "芬兰语"),
-    NL("nl", "荷兰语"),
-    TAT("tat", "鞑靼语"),
-    KUR("kur", "库尔德语"),
-    JPKA("jpka", "日语假名"),
-    LAT("lat", "拉丁语"),
-    SAN("san", "梵语"),
-    ARG("arg", "阿拉贡语"),
-    GRA("gra", "古希腊语"),
-    KLI("kli", "克林贡语"),
-    HEB("heb", "希伯来语"),
-    ENO("eno", "古英语"),
-    FRM("frm", "中古法语"),
-    PER("per", "波斯语");
+    AUTO("auto", StringResource.LANG_DESC_AUTO),
+    ZH("zh", StringResource.LANG_DESC_ZH),
+    EN("en", StringResource.LANG_DESC_EN),
+    JP("jp", StringResource.LANG_DESC_JP),
+    KOR("kor", StringResource.LANG_DESC_KR),
+    FRA("fra", StringResource.LANG_DESC_FR),
+    DE("de", StringResource.LANG_DESC_DE),
+    RU("ru", StringResource.LANG_DESC_RU),
+    CHT("cht", StringResource.LANG_DESC_CHT),
+    SPA("spa", StringResource.LANG_DESC_SPA),
+    PT("pt", StringResource.LANG_DESC_PT),
+    ARA("ara", StringResource.LANG_DESC_ARA),
+    TR("tr", StringResource.LANG_DESC_TR),
+    PL("pl", StringResource.LANG_DESC_PL),
+    DAN("dan", StringResource.LANG_DESC_DAN),
+    YUE("yue", StringResource.LANG_DESC_YUE),
+    TH("th", StringResource.LANG_DESC_TH),
+    VIE("vie", StringResource.LANG_DESC_VIE),
+    ID("id", StringResource.LANG_DESC_ID),
+    MS("ms", StringResource.LANG_DESC_MS),
+    HI("hi", StringResource.LANG_DESC_HI),
+    IR("ir", StringResource.LANG_DESC_IR),
+    WYW("wyw", StringResource.LANG_DESC_WYW),
+    IT("it", StringResource.LANG_DESC_IT),
+    KK("kk", StringResource.LANG_DESC_KK),
+    TL("tl", StringResource.LANG_DESC_TL),
+    ICE("ice", StringResource.LANG_DESC_ICE),
+    FIN("fin", StringResource.LANG_DESC_FIN),
+    NL("nl", StringResource.LANG_DESC_NL),
+    TAT("tat", StringResource.LANG_DESC_TAT),
+    KUR("kur", StringResource.LANG_DESC_KUR),
+
+    /**
+     * dead languages
+     */
+    LAT("lat", StringResource.LANG_DESC_LAT),
+    SAN("san", StringResource.LANG_DESC_SAN),
+    ARG("arg", StringResource.LANG_DESC_ARG),
+    GRA("gra", StringResource.LANG_DESC_GRA),
+    KLI("kli", StringResource.LANG_DESC_KLI),
+    HEB("heb", StringResource.LANG_DESC_HEB),
+    ENO("eno", StringResource.LANG_DESC_ENO),
+    FRM("frm", StringResource.LANG_DESC_FRM),
+    PER("per", StringResource.LANG_DESC_PER);
+
+    companion object {
+        fun from(desc: String): Lang {
+            for (lang in values()) {
+                if (lang.desc == desc) {
+                    return lang
+                }
+            }
+            return AUTO
+        }
+    }
 }

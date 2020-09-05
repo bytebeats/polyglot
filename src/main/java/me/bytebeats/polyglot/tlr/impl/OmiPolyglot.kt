@@ -71,7 +71,7 @@ class OmiPolyglot() : AbstractPolyglot(URL) {
         return result
     }
 
-    override fun setFormData(from: Lang, to: Lang, text: String) {
+    override fun addFormData(from: Lang, to: Lang, text: String) {
         formData["languageType"] = "${langs[from]}2${langs[to]}"
         formData["sentsToTrans"] = text.trim()
     }
