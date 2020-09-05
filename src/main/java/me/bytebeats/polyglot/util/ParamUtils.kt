@@ -47,7 +47,7 @@ class ParamUtils {
             return target.toString()
         }
 
-        private fun encodeUtf8(input: String?): String {
+        fun encodeUtf8(input: String?): String {
             if (input.isNullOrEmpty()) return ""
             try {
                 return URLEncoder.encode(input, "utf-8")
