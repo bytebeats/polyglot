@@ -2,8 +2,6 @@ package me.bytebeats.polyglot
 
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.impl.*
-import me.bytebeats.polyglot.util.ParamUtils
-import java.util.*
 
 /**
  * @author bytebeats
@@ -41,6 +39,12 @@ class Main {
 //            println("trycan----------------")
 //            val trycan = TrycanPolyglot()
 //            println(trycan.execute(Lang.ZH, Lang.CHT, "忧郁的小乌龟"))
+            println("Omi----------------")
+            val omi = OmiPolyglot()
+            println(omi.execute(Lang.EN, Lang.ZH, "Blue turtle"))
+//            println("iciba----------------")
+//            val iciba = IcibaPolyglot()
+//            println(iciba.execute(Lang.ZH, Lang.EN, "好的"))
         }
     }
 }
