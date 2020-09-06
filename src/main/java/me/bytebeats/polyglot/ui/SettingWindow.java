@@ -1,4 +1,4 @@
-package me.bytebeats.polyglot;
+package me.bytebeats.polyglot.ui;
 
 /**
  * @author <a href="https://github.com/bytebeats">bytebeats</a>
