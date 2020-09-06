@@ -27,7 +27,9 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <applicationService serviceImplementation="me.bytebeats.polyglot.ui.AppSettingState" />
+        <toolWindow icon="/icon.png" anchor="left" id="polyglot"
+            factoryClass="me.bytebeats.polyglot.ui.PolyglotWindow" />
     </extensions>
 
     <actions>

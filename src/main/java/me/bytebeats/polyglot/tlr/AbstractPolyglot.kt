@@ -6,7 +6,7 @@ import me.bytebeats.polyglot.http.FormDataAdder
 import me.bytebeats.polyglot.http.ITranslator
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.impl.*
-import me.bytebeats.polyglot.util.StringResource
+import me.bytebeats.polyglot.util.StringResUtils
 import java.io.IOException
 
 /**
@@ -65,15 +65,15 @@ abstract class AbstractPolyglot(url: String) : HttpEntityCloser(url), FormDataAd
     @Throws(Exception::class)
     abstract fun query(): String
 
-    companion object PolyglotFactory {
+    companion object Factory {
         fun newInstance(polyglot: String): AbstractPolyglot =
             when (polyglot) {
-                StringResource.POLYGLOT_BING -> BingPolyglot()
-                StringResource.POLYGLOT_GOOGLE -> GooglePolyglot()
-                StringResource.POLYGLOT_OMI -> OmiPolyglot()
-                StringResource.POLYGLOT_SOGOU -> SogouPolyglot()
-                StringResource.POLYGLOT_TENCENT -> TencentPolyglot()
-                StringResource.POLYGLOT_YOUDAO -> YouDaoPolyglot()
+                StringResUtils.POLYGLOT_BING -> BingPolyglot()
+                StringResUtils.POLYGLOT_GOOGLE -> GooglePolyglot()
+                StringResUtils.POLYGLOT_OMI -> OmiPolyglot()
+                StringResUtils.POLYGLOT_SOGOU -> SogouPolyglot()
+                StringResUtils.POLYGLOT_TENCENT -> TencentPolyglot()
+                StringResUtils.POLYGLOT_YOUDAO -> YouDaoPolyglot()
                 else -> BaiduPolyglot()
             }
     }

@@ -9,8 +9,16 @@ package me.bytebeats.polyglot.util
  * @description TO-DO
  */
 
-class StringResource {
+class StringResUtils {
     companion object {
+        /**
+         * Plugins
+         */
+        const val APP_NAME = "Polyglot"
+
+        /**
+         * Languages
+         */
         const val LANG_DESC_AUTO = "自动检测"
         const val LANG_DESC_ZH = "中文(简体)"
         const val LANG_DESC_CHT = "中文(繁体)"

@@ -13,55 +13,60 @@ import me.bytebeats.polyglot.lang.Lang
 
 class PolyglotUtils {
     companion object {
-        private val langsSupportedByBaidu = setOf(
+        val LANGS_DEFAULT = setOf(
+            Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.CHT, Lang.DE, Lang.SPA, Lang.IT, Lang.TH,
+            Lang.ARA
+        )
+
+        private val LANGS_BAIDU = setOf(
             Lang.ZH, Lang.CHT, Lang.YUE, Lang.WYW, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA,
             Lang.PT, Lang.TR, Lang.IT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO, Lang.FRM, Lang.PER
         )
 
-        private val langsSupportedByBing = setOf(
+        private val LANGS_BING = setOf(
             Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.ARA,
             Lang.TH, Lang.VIE
         )
-        private val langsSupportedByGoogle = setOf(
+        private val LANGS_GOOGLE = setOf(
             Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.VIE,
             Lang.TH, Lang.ARA
         )
-        private val langsSupportedByOmi = setOf(Lang.ZH, Lang.EN)
+        private val LANGS_OMI = setOf(Lang.ZH, Lang.EN)
         private val langsSupportedBySogou = setOf(
             Lang.AUTO, Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT,
             Lang.VIE, Lang.TH, Lang.ARA
         )
-        private val langsSupportedByTencent = setOf(
+        private val LANGS_TENCENT = setOf(
             Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.TR, Lang.PT,
             Lang.VIE, Lang.ID, Lang.TH, Lang.MS, Lang.ARA, Lang.HI
         )
-        private val langsSupportedByYoudao = setOf(
+        private val LANGS_YOUDAO = setOf(
             Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.CHT, Lang.DE, Lang.SPA, Lang.IT, Lang.PT,
             Lang.VIE, Lang.ID, Lang.TH, Lang.ARA, Lang.NL
         )
 
         fun getSupportedPolyglot(from: Lang, to: Lang): List<String> {
             val polyglots = mutableListOf<String>()
-            if (langsSupportedByBaidu.contains(from) && langsSupportedByBaidu.contains(to)) {
-                polyglots.add(StringResource.POLYGLOT_BAIDU)
+            if (LANGS_BAIDU.contains(from) && LANGS_BAIDU.contains(to)) {
+                polyglots.add(StringResUtils.POLYGLOT_BAIDU)
             }
-            if (langsSupportedByBing.contains(from) && langsSupportedByBing.contains(to)) {
-                polyglots.add(StringResource.POLYGLOT_BING)
+            if (LANGS_BING.contains(from) && LANGS_BING.contains(to)) {
+                polyglots.add(StringResUtils.POLYGLOT_BING)
             }
-            if (langsSupportedByGoogle.contains(from) && langsSupportedByGoogle.contains(to)) {
-                polyglots.add(StringResource.POLYGLOT_GOOGLE)
+            if (LANGS_GOOGLE.contains(from) && LANGS_GOOGLE.contains(to)) {
+                polyglots.add(StringResUtils.POLYGLOT_GOOGLE)
             }
-            if (langsSupportedByOmi.contains(from) && langsSupportedByOmi.contains(to)) {
-                polyglots.add(StringResource.POLYGLOT_OMI)
+            if (LANGS_OMI.contains(from) && LANGS_OMI.contains(to)) {
+                polyglots.add(StringResUtils.POLYGLOT_OMI)
             }
             if (langsSupportedBySogou.contains(from) && langsSupportedBySogou.contains(to)) {
-                polyglots.add(StringResource.POLYGLOT_SOGOU)
+                polyglots.add(StringResUtils.POLYGLOT_SOGOU)
             }
-            if (langsSupportedByTencent.contains(from) && langsSupportedByTencent.contains(to)) {
-                polyglots.add(StringResource.POLYGLOT_TENCENT)
+            if (LANGS_TENCENT.contains(from) && LANGS_TENCENT.contains(to)) {
+                polyglots.add(StringResUtils.POLYGLOT_TENCENT)
             }
-            if (langsSupportedByYoudao.contains(from) && langsSupportedByYoudao.contains(to)) {
-                polyglots.add(StringResource.POLYGLOT_YOUDAO)
+            if (LANGS_YOUDAO.contains(from) && LANGS_YOUDAO.contains(to)) {
+                polyglots.add(StringResUtils.POLYGLOT_YOUDAO)
             }
             return polyglots
         }
