@@ -1,28 +1,56 @@
 plugins {
     id 'java'
     id 'org.jetbrains.intellij' version '0.4.21'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.0'
 }
+
+apply plugin: "kotlin"
+apply plugin: "org.jetbrains.intellij"
 
 group 'me.bytebeats'
 version '1.0.0'
+
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+sourceSets {
+    main.kotlin.srcDirs += 'src/main/kotlin'
+    main.java.srcDirs += 'src/main/java'
+}
 
 repositories {
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter' }
     mavenCentral()
     jcenter()
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.0"
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version '2020.2'
+    pluginName 'Polyglot'
 }
 patchPluginXml {
     changeNotes """
       v1.0.0 支持简体和繁体转换.<br>
       v1.1.0 支持选择台湾繁体和香港繁体的转换.<br>
       """
+}
+
+ext {
+    kotlinJvmVersion = "1.4.0"
 }

@@ -45,6 +45,9 @@ public class PolyglotWindow implements ToolWindowFactory {
     private JTextArea plgt_target_lang_output;
     private JScrollPane plgt_target_lang_scroll_panel;
     private JButton plgt_target_lang_copy;
+    private JPanel plgt_target_panel;
+    private JPanel plgt_target_ouput_panel;
+    private JPanel plgt_to_do;
 
     private String from = "";
     private String to = "";
@@ -53,19 +56,19 @@ public class PolyglotWindow implements ToolWindowFactory {
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         LogUtils.Companion.init(project);
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
-        Content polyglotContent = contentFactory.createContent(polyglot_panel, StringResUtils.POLYGLOT_YOUDAO, true);
+        Content polyglotContent = contentFactory.createContent(polyglot_panel, StringResUtils.APP_NAME_DESC, true);
         toolWindow.getContentManager().addContent(polyglotContent);
     }
 
     @Override
     public boolean isApplicable(@NotNull Project project) {
-        return true;
+        return project.isOpen();
     }
 
     @Override
     public void init(@NotNull ToolWindow toolWindow) {
-        from = AppSettingState.Companion.getInstance().getFrom();
-        to = AppSettingState.Companion.getInstance().getTo();
+        from = PolyglotSettingState.getInstance().getFrom();
+        to = PolyglotSettingState.getInstance().getTo();
         initComboBoxes();
         plgt_translate_btn.addActionListener(e -> {
             String translator = (String) plgt_translator_cb.getSelectedItem();
@@ -81,18 +84,23 @@ public class PolyglotWindow implements ToolWindowFactory {
             clipboard.setContents(selection, null);
             LogUtils.Companion.info("Copy succeeded");
         });
+        plgt_source_lang_cb.setSelectedItem(from);
+        plgt_target_langs_cb.setSelectedItem(to);
+//        plgt_langs_switch.setActionMap();
     }
 
     private void initComboBoxes() {
         plgt_source_lang_cb.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 from = (String) plgt_source_lang_cb.getSelectedItem();
+                PolyglotSettingState.getInstance().setFrom(from);
                 updateTranslators();
             }
         });
         plgt_target_langs_cb.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 to = (String) plgt_target_langs_cb.getSelectedItem();
+                PolyglotSettingState.getInstance().setTo(to);
                 updateTranslators();
             }
         });
@@ -100,8 +108,6 @@ public class PolyglotWindow implements ToolWindowFactory {
             plgt_source_lang_cb.addItem(lang.getDesc());
             plgt_target_langs_cb.addItem(lang.getDesc());
         }
-        plgt_source_lang_cb.setSelectedItem(from);
-        plgt_target_langs_cb.setSelectedItem(to);
     }
 
     private void updateTranslators() {
@@ -115,7 +121,7 @@ public class PolyglotWindow implements ToolWindowFactory {
 
     @Override
     public boolean shouldBeAvailable(@NotNull Project project) {
-        return true;
+        return true;//is window visible when ide starts up.
     }
 
     @Override
