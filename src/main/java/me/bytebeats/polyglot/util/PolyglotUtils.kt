@@ -8,19 +8,21 @@ import me.bytebeats.polyglot.lang.Lang
  * @github https://github.com/bytebeats
  * @created on 2020/9/5 18:01
  * @version 1.0
- * @description TO-DO
+ * @description PolyglotUtils supports languages.
  */
 
 class PolyglotUtils {
     companion object {
         val LANGS_DEFAULT = setOf(
-            Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.CHT, Lang.DE, Lang.SPA, Lang.IT, Lang.TH,
-            Lang.ARA
+            Lang.ZH, Lang.CHT, Lang.WYW, Lang.EN, Lang.FRA, Lang.DE, Lang.JP, Lang.KOR, Lang.RU, Lang.SPA, Lang.IT,
+            Lang.VIE, Lang.TH, Lang.ARA, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
+            Lang.FRM, Lang.PER
         )
 
         private val LANGS_BAIDU = setOf(
             Lang.ZH, Lang.CHT, Lang.YUE, Lang.WYW, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA,
-            Lang.PT, Lang.TR, Lang.IT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO, Lang.FRM, Lang.PER
+            Lang.PT, Lang.TR, Lang.IT, Lang.ARA, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
+            Lang.FRM, Lang.PER
         )
 
         private val LANGS_BING = setOf(
