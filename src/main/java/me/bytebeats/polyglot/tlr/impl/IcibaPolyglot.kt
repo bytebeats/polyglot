@@ -15,9 +15,14 @@ import org.apache.http.util.EntityUtils
  * @github https://github.com/bytebeats
  * @created on 2020/9/3 18:23
  * @version 1.0
- * @description TO-DO
+ * @description IcibaPolyglot depends on iciba to offer translation service. 金山词霸
  */
 
+@Deprecated(
+    message = "sign的算法没有破解成功",
+    replaceWith = ReplaceWith("IcibaPolyglot", "null"),
+    level = DeprecationLevel.HIDDEN
+)
 class IcibaPolyglot() : AbstractPolyglot(URL) {
     companion object {
         //        private const val URL = "http://www.iciba.com/fy"
@@ -83,7 +88,6 @@ class IcibaPolyglot() : AbstractPolyglot(URL) {
         formData["from"] = langs[from]!!
         formData["to"] = langs[to]!!
         formData["q"] = text.trim()
-        //
         queries["c"] = "trans"
         queries["m"] = "fy"
         queries["clint"] = "6"

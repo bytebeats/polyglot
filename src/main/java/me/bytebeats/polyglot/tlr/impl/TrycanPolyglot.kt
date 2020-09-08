@@ -17,6 +17,11 @@ import org.apache.http.util.EntityUtils
  * @description TrycanPolyglot depends on trycan to offer translation service
  */
 
+@Deprecated(
+    message = "Trycan url is deprecated and never responds",
+    replaceWith = ReplaceWith("TrycanPolyglot", "null"),
+    level = DeprecationLevel.HIDDEN
+)
 class TrycanPolyglot() : AbstractPolyglot(URL) {
     companion object {
         private const val URL = "http://fanyi.trycan.com/Transfer.do"
