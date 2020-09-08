@@ -49,7 +49,7 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-.idea/
+#.idea/
 .gradle/
 out/
 build/
