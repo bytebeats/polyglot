@@ -43,30 +43,47 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
     }
 
     /**
+     *
      * {
     "translateResult": [
     [
     {
-    "tgt": "The tortoise",
-    "src": "乌龟"
+    "tgt": "Good!",
+    "src": "好!"
+    }
+    ],
+    [
+    {
+    "tgt": "The #",
+    "src": "的#"
+    }
+    ],
+    [
+    {
+    "tgt": "?",
+    "src": "吧?"
     }
     ]
     ],
     "errorCode": 0,
-    "type": "zh-CHS2en",
-    "smartResult": {
-    "entries": [
-    "",
-    "[脊椎] tortoise\r\n"
-    ],
-    "type": 1
+    "type": "zh-CHS2en"
     }
-    }
+     *
      */
     override fun parse(text: String): String {
         val mapper = ObjectMapper()
-        val result = mapper.readTree(text).path("translateResult")[0][0].get("tgt").asText()
-        return result
+        val translations = mapper.readTree(text).path("translateResult")
+        if (translations.isEmpty) return ""
+        val dst = StringBuilder()
+        for (i in 0 until translations.size()) {
+            val node = translations[i]
+            if (node.isEmpty) continue
+            if (dst.isNotEmpty()) {
+                dst.append("\n")
+            }
+            dst.append(node[0].path("tgt").asText())
+        }
+        return dst.toString()
     }
 
     override fun query(): String {
