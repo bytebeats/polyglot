@@ -38,7 +38,6 @@ class TencentPolyglot() : AbstractPolyglot(URL) {
         langs[Lang.ID] = "id"
         langs[Lang.TH] = "th"
         langs[Lang.MS] = "ms"
-        langs[Lang.ARA] = "ar"
         langs[Lang.HI] = "hi"
     }
 
