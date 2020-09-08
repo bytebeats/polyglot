@@ -14,7 +14,7 @@ import org.apache.http.util.EntityUtils
  * @github https://github.com/bytebeats
  * @created on 2020/9/3 18:09
  * @version 1.0
- * @description TO-DO
+ * @description OmiPolyglot depends on Omi to offer translation service
  */
 
 class OmiPolyglot() : AbstractPolyglot(URL) {
@@ -28,9 +28,10 @@ class OmiPolyglot() : AbstractPolyglot(URL) {
     }
 
     /**
-     *{
+     *
+     * {
     "languageType": "c2e",
-    "sentsToTrans": "忧郁的乌龟",
+    "sentsToTrans": "好\n的\n吧",
     "wordToTrans": "",
     "srcLength": 5,
     "srcTransLength": 5,
@@ -38,12 +39,24 @@ class OmiPolyglot() : AbstractPolyglot(URL) {
     "resType": "1",
     "sentsResults": [
     [
-    "忧郁的乌龟"
+    "好",
+    "\n",
+    "的",
+    "\n",
+    "吧"
     ],
     [
-    "The Melancholy Turtle"
+    "All right",
+    "",
+    "Of",
+    "",
+    "Come on"
     ],
     [
+    "TEXTCONTENT",
+    "SPECIALSYMBOL",
+    "TEXTCONTENT",
+    "SPECIALSYMBOL",
     "TEXTCONTENT"
     ]
     ],
@@ -54,11 +67,23 @@ class OmiPolyglot() : AbstractPolyglot(URL) {
     "errorInfo": "",
     "servletWrapper": {}
     }
+     *
      */
     override fun parse(text: String): String {
         val mapper = ObjectMapper()
-        val result = mapper.readTree(text).path("sentsResults")[1][0].asText()
-        return result
+        val sentsResults = mapper.readTree(text).path("sentsResults")
+        val dst = StringBuilder()
+        val srcs = sentsResults[0]
+        val tgts = sentsResults[1]
+        val types = sentsResults[2]
+        for (i in 0 until types.size()) {
+            if (types[i].asText() == "TEXTCONTENT") {
+                dst.append(tgts[i].asText())
+            } else {
+                dst.append(srcs[i].asText())
+            }
+        }
+        return dst.toString()
     }
 
     override fun query(): String {

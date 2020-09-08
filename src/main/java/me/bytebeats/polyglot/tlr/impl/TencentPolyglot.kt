@@ -43,30 +43,86 @@ class TencentPolyglot() : AbstractPolyglot(URL) {
     }
 
     /**
+     *
      * {
-     * "sessionUuid":"translate_uuid1598713222907",
-     * "translate":{"errCode":0,"errMsg":"","sessionUuid":"translate_uuid1598713222907","source":"zh","target":"en","records":[{"sourceText":"德意志","targetText":"Germany","traceId":"07f3fe9c581f42c684d6a89bf4386a8d"}],"full":true,"options":{}},
-     * "dict":{"word":"德意志","detailUrl":"https://dictweb.translator.qq.com/?id=634106360d0fd9bdd5f0c32c31276e60","enWords":["Germany","Deutschland"],"data":[{"en_hash":"634106360d0fd9bdd5f0c32c31276e60"}],"type":"dict","errCode":0,"errMsg":""},
-     * "suggest":{"data":[{"id":"634106360d0fd9bdd5f0c32c31276e60","word":"德意志","suggest_translation":"Germany / Deutschland"}],"errCode":0,"errMsg":""},
-     * "errCode":0,
-     * "errMsg":"ok"
-     * }
+    "sessionUuid": "translate_uuid1599536278882",
+    "translate": {
+    "errCode": 0,
+    "errMsg": "",
+    "sessionUuid": "translate_uuid1599536278882",
+    "source": "zh",
+    "target": "en",
+    "records": [
+    {
+    "sourceText": "好!",
+    "targetText": "good! ",
+    "traceId": "5d972ecc338f4f4c9a73e9a9118deb65"
+    },
+    {
+    "sourceText": "\n",
+    "targetText": "\n ",
+    "traceId": "5d972ecc338f4f4c9a73e9a9118deb65"
+    },
+    {
+    "sourceText": "的?",
+    "targetText": "What? ",
+    "traceId": "5d972ecc338f4f4c9a73e9a9118deb65"
+    },
+    {
+    "sourceText": "\n",
+    "targetText": "\n ",
+    "traceId": "5d972ecc338f4f4c9a73e9a9118deb65"
+    },
+    {
+    "sourceText": "吧%",
+    "targetText": "Bar%",
+    "traceId": "5d972ecc338f4f4c9a73e9a9118deb65"
+    }
+    ],
+    "full": true,
+    "options": {}
+    },
+    "dict": {
+    "data": [
+    {
+    "en_hash": "44d35c0d5b0bb0252821f55f432a3c59",
+    "word": "good"
+    },
+    {
+    "en_hash": "b08b8364c97fc0e1e27612765140d8d3",
+    "word": "What"
+    },
+    {
+    "word": "Bar%"
+    }
+    ],
+    "errCode": 0,
+    "errMsg": "",
+    "type": "important words",
+    "map": {
+    "good": {
+    "detailId": "44d35c0d5b0bb0252821f55f432a3c59"
+    },
+    "What": {
+    "detailId": "b08b8364c97fc0e1e27612765140d8d3"
+    },
+    "Bar%": {}
+    }
+    },
+    "errCode": 0,
+    "errMsg": "ok"
+    }
+     *
      */
     override fun parse(text: String): String {
         val mapper = ObjectMapper()
-        val result = mapper.readTree(text).path("translate").path("records")[0].findValuesAsText("targetText")
-        if (result.isEmpty()) {
+        val records = mapper.readTree(text).path("translate").path("records")
+        if (records.isEmpty) {
             return ""
         }
         val dst = StringBuilder()
-        for (v in result) {
-            if (v.isBlank()) {
-                continue
-            }
-            if (dst.isNotEmpty()) {
-                dst.append("\n")
-            }
-            dst.append(v)
+        records.forEach { node ->
+            dst.append(node.path("targetText").asText())
         }
         return dst.toString()
     }

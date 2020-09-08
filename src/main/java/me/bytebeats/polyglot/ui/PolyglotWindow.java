@@ -62,7 +62,7 @@ public class PolyglotWindow implements ToolWindowFactory {
 
     @Override
     public boolean isApplicable(@NotNull Project project) {
-        return project.isOpen();
+        return true;
     }
 
     @Override
@@ -71,6 +71,10 @@ public class PolyglotWindow implements ToolWindowFactory {
         to = PolyglotSettingState.getInstance().getTo();
         initComboBoxes();
         plgt_translate_btn.addActionListener(e -> {
+            if (from != null && from.equals(to)) {
+                plgt_target_lang_output.setText(plgt_source_lang_input.getText());
+                return;
+            }
             String translator = (String) plgt_translator_cb.getSelectedItem();
             assert translator != null;
             AbstractPolyglot polyglot = AbstractPolyglot.Factory.newInstance(translator);
@@ -78,7 +82,7 @@ public class PolyglotWindow implements ToolWindowFactory {
             plgt_target_lang_output.setText(result);
         });
         plgt_target_lang_copy.addActionListener(e -> {
-            String content = plgt_source_lang_input.getText();
+            String content = plgt_target_lang_output.getText();
             StringSelection selection = new StringSelection(content);
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(selection, null);
@@ -86,7 +90,6 @@ public class PolyglotWindow implements ToolWindowFactory {
         });
         plgt_source_lang_cb.setSelectedItem(from);
         plgt_target_langs_cb.setSelectedItem(to);
-//        plgt_langs_switch.setActionMap();
     }
 
     private void initComboBoxes() {

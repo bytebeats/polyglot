@@ -16,13 +16,11 @@ class Main {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val baidu = BaiduPolyglot()
             println("Baidu----------------")
+            val baidu = BaiduPolyglot()
             println(baidu.translate(Lang.EN, Lang.ZH, "God, are you testing me?"))
-//            println(baidu.execute(Lang.EN, Lang.CHT, "God, are you testing me?"))
-//            println(baidu.execute(Lang.EN, Lang.JP, "God, are you testing me?"))
-            val tencent = TencentPolyglot()
             println("Tencent----------------")
+            val tencent = TencentPolyglot()
             println(tencent.translate(Lang.ZH, Lang.FRA, "德意志"))
             println("YouDao----------------")
             val youdao = YouDaoPolyglot()
