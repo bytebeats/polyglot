@@ -40,7 +40,7 @@ class PolyglotUtils {
         )
         private val LANGS_TENCENT = setOf(
             Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.TR, Lang.PT,
-            Lang.VIE, Lang.ID, Lang.TH, Lang.MS, Lang.ARA, Lang.HI
+            Lang.VIE, Lang.ID, Lang.TH, Lang.MS, Lang.HI
         )
         private val LANGS_YOUDAO = setOf(
             Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.CHT, Lang.DE, Lang.SPA, Lang.IT, Lang.PT,
