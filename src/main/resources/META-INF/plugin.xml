@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>me.bytebeats.polyglot</id>
-    <name>Polyglot</name>
-    <version>1.0.1</version>
+    <name>Polyglot Translators</name>
+    <version>1.0.2</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
 
     <description><![CDATA[
@@ -14,8 +14,11 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      v1.0.0 提供了百度, 必应, 谷歌, 搜狗, 有道, 欧米等多种翻译器来提供翻译服务.<br>
-      v1.0.1 更新了相关配置.<br>
+      v1.0.0 provided translation service from different translators like Baidu, Bing, Google, Sogou, Youdao, Omi, Tencent.<br>
+      提供了百度, 必应, 谷歌, 搜狗, 有道, 欧米, 腾讯等多种翻译器来提供翻译服务.<br>
+      v1.0.1 updated configure files.<br>
+      更新了相关配置.<br>
+      v1.0.2 provided the changed notes description in English.<br>
     ]]>
     </change-notes>
 
