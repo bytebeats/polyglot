@@ -10,7 +10,7 @@
  
  # Visual Effects
  
- ![polyglot](/screenshoots/polyglot_screenshot_1.png)
+ ![polyglot](screenshots/polyglot_screenshot_1.png)
  
  # To-Dos
  
