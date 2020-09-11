@@ -9,10 +9,10 @@ import me.bytebeats.polyglot.tlr.impl.*
  * @github https://github.com/bytebeats
  * @created on 2020/8/27 17:30
  * @version 1.0
- * @description TO-DO
+ * @description Test does testing works.
  */
 
-class Main {
+private class Test {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {

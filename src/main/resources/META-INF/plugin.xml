@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>me.bytebeats.polyglot</id>
     <name>Polyglot</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
 
     <description><![CDATA[
@@ -15,11 +15,12 @@
 
     <change-notes><![CDATA[
       v1.0.0 提供了百度, 必应, 谷歌, 搜狗, 有道, 欧米等多种翻译器来提供翻译服务.<br>
+      v1.0.1 更新了相关配置.<br>
     ]]>
     </change-notes>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="173.0" until-build="202.*" />
+    <idea-version since-build="173" until-build="202.*" />
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -27,7 +28,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="me.bytebeats.polyglot.ui.PolyglotSettingState" />
-        <toolWindow icon="/icon.png" anchor="left" id="polyglot"
+        <toolWindow icon="/icon_polyglot.png" anchor="left" id="polyglot"
             factoryClass="me.bytebeats.polyglot.ui.PolyglotWindow" />
     </extensions>
 
