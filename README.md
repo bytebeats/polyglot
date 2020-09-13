@@ -11,14 +11,18 @@
  *  clone this project, **Build | Build project**, then you will see **build/libs/polyglot-x.x.x.jar**
  *  **Intellij IDEA** -> **Preferences** -> **Plugins** -> Settings -> **Install from Disk**, select and load **polyglot-x.x.x.jar** or search **polyglot** from MarketPlace, then click and install **polyglot**
  
+ # Features
+ * 支持常规的语言翻译, 诸如中文, 中文繁体, 英/法/德/俄语等
+ * 支持非常规的语言翻译, 诸如粤语, 文言文, 伊朗语, 越南语等
+ * 支持已经死亡的或者虚构的语言翻译, 诸如古英语, 中古法语, 梵语, 阿拉贡语, 希伯语等
+ 
  # Visual Effects
  
  ![polyglot](screenshots/polyglot_screenshot_1.png)
  
  # To-Dos
  
- *  添加 Android 字符串
- 
+ *  添加 Android 多语言字符串支持
  
  # Support
  <br>Open-source is no easy job, for which I have to sacrifice my weekends and other non-working hours.</br>
