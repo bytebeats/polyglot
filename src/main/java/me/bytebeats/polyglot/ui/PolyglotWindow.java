@@ -126,9 +126,4 @@ public class PolyglotWindow implements ToolWindowFactory {
     public boolean shouldBeAvailable(@NotNull Project project) {
         return true;//is window visible when ide starts up.
     }
-
-    @Override
-    public boolean isDoNotActivateOnStart() {
-        return true;
-    }
 }
