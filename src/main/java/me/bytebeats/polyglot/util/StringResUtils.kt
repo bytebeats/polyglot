@@ -15,7 +15,7 @@ class StringResUtils {
          * Plugins
          */
         const val APP_NAME = "Polyglot"
-        const val APP_NAME_DESC = "Translators"
+        const val APP_NAME_DESC = "Translation"
 
         /**
          * Languages
