@@ -43,6 +43,7 @@ class BaiduPolyglot() : AbstractPolyglot(URL) {
         langs[Lang.PT] = "pt"
         langs[Lang.TR] = "tr"
         langs[Lang.IT] = "it"
+        langs[Lang.ARA] = "ara"
         //dead languages or virtual languages
         langs[Lang.SAN] = "san"
         langs[Lang.ARG] = "arg"
@@ -52,7 +53,15 @@ class BaiduPolyglot() : AbstractPolyglot(URL) {
         langs[Lang.ENO] = "eno"
         langs[Lang.FRM] = "frm"
         langs[Lang.PER] = "per"
-
+        langs[Lang.LAT] = "lat"
+        langs[Lang.DAN] = "dan"
+        langs[Lang.PL] = "pl"
+        langs[Lang.KK] = "kaz"
+        langs[Lang.ICE] = "ice"
+        langs[Lang.FIN] = "fin"
+        langs[Lang.FIL] = "fil"
+        langs[Lang.TAT] = "tat"
+        langs[Lang.KUR] = "kur"
     }
 
     /**

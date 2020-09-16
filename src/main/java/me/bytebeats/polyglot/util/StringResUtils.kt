@@ -45,7 +45,7 @@ class StringResUtils {
         const val LANG_DESC_WYW = "文言文"
         const val LANG_DESC_IT = "意大利语"
         const val LANG_DESC_KK = "哈萨克语"
-        const val LANG_DESC_TL = "菲律宾语"
+        const val LANG_DESC_FIL = "菲律宾语"
         const val LANG_DESC_ICE = "冰岛语"
         const val LANG_DESC_FIN = "芬兰语"
         const val LANG_DESC_NL = "荷兰语"
