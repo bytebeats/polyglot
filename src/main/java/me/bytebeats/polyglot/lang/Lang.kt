@@ -37,7 +37,7 @@ enum class Lang(val lang: String, val desc: String) {
     WYW("wyw", StringResUtils.LANG_DESC_WYW),
     IT("it", StringResUtils.LANG_DESC_IT),
     KK("kk", StringResUtils.LANG_DESC_KK),
-    TL("tl", StringResUtils.LANG_DESC_TL),
+    FIL("fil", StringResUtils.LANG_DESC_FIL),
     ICE("ice", StringResUtils.LANG_DESC_ICE),
     FIN("fin", StringResUtils.LANG_DESC_FIN),
     NL("nl", StringResUtils.LANG_DESC_NL),
