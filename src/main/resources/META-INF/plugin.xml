@@ -3,6 +3,7 @@
     <name>Polyglot Translators</name>
     <version>1.0.1</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
+    <idea-version since-build="173.*" until-build="202.*" />
 
     <description><![CDATA[
       Polyglot: to translate different languages with different translators!</br>
@@ -22,9 +23,6 @@
       v1.0.3 updated since build version.<br>
     ]]>
     </change-notes>
-
-    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="173.*" until-build="202.*" />
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
