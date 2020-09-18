@@ -54,15 +54,9 @@ public class PolyglotWindow implements ToolWindowFactory {
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        LogUtils.Companion.init(project);
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content polyglotContent = contentFactory.createContent(polyglot_panel, StringResUtils.APP_NAME_DESC, true);
         toolWindow.getContentManager().addContent(polyglotContent);
-    }
-
-    @Override
-    public boolean isApplicable(@NotNull Project project) {
-        return true;
     }
 
     @Override
@@ -86,7 +80,7 @@ public class PolyglotWindow implements ToolWindowFactory {
             StringSelection selection = new StringSelection(content);
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(selection, null);
-            LogUtils.Companion.info("Copy succeeded");
+            LogUtils.INSTANCE.info("Copy succeeded");
         });
         plgt_source_lang_cb.setSelectedItem(from);
         plgt_target_langs_cb.setSelectedItem(to);
@@ -125,5 +119,10 @@ public class PolyglotWindow implements ToolWindowFactory {
     @Override
     public boolean shouldBeAvailable(@NotNull Project project) {
         return true;//is window visible when ide starts up.
+    }
+
+    @Override
+    public boolean isApplicable(@NotNull Project project) {
+        return true;
     }
 }
