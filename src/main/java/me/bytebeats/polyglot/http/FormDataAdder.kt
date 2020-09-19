@@ -8,7 +8,7 @@ import me.bytebeats.polyglot.lang.Lang
  * @github https://github.com/bytebeats
  * @created on 2020/8/27 14:51
  * @version 1.0
- * @description  FormDataAdder is an interface containing two functions to set up
+ * @description  FormDataAdder is an interface containing one function to set up
  * HTTP request parameters.
  */
 

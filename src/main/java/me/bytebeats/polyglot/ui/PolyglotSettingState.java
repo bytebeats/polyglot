@@ -22,6 +22,8 @@ import org.jetbrains.annotations.Nullable;
 public class PolyglotSettingState implements PersistentStateComponent<PolyglotSettingState> {
     private String from = StringResUtils.LANG_DESC_ZH;
     private String to = StringResUtils.LANG_DESC_EN;
+    private String dailyQuoter = StringResUtils.QUOTOR_SCALLOP;
+    private boolean isDailyQuoterOn = true;
 
     public static PolyglotSettingState getInstance() {
         return ServiceManager.getService(PolyglotSettingState.class);
@@ -38,6 +40,13 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
         XmlSerializerUtil.copyBean(polyglotSettingState, this);
     }
 
+    public void reset() {
+        from = StringResUtils.LANG_DESC_ZH;
+        to = StringResUtils.LANG_DESC_EN;
+        dailyQuoter = StringResUtils.QUOTOR_SCALLOP;
+        isDailyQuoterOn = true;
+    }
+
     public String getFrom() {
         return from;
     }
@@ -52,5 +61,21 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
 
     public void setTo(String to) {
         this.to = to;
+    }
+
+    public String getDailyQuoter() {
+        return dailyQuoter;
+    }
+
+    public void setDailyQuoter(String dailyQuoter) {
+        this.dailyQuoter = dailyQuoter;
+    }
+
+    public boolean isDailyQuoterOn() {
+        return isDailyQuoterOn;
+    }
+
+    public void setDailyQuoterOn(boolean dailyQuoterOn) {
+        isDailyQuoterOn = dailyQuoterOn;
     }
 }

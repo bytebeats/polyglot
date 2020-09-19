@@ -1,7 +1,6 @@
 package me.bytebeats.polyglot.http
 
 import me.bytebeats.polyglot.util.LogUtils
-import me.bytebeats.polyglot.lang.Lang
 import org.apache.http.HttpEntity
 import org.apache.http.client.methods.CloseableHttpResponse
 import org.apache.http.impl.client.CloseableHttpClient
@@ -10,18 +9,17 @@ import org.apache.http.util.EntityUtils
 import java.io.IOException
 
 /**
- * @author bytebeats
- * @email <happychinapc@gmail.com>
- * @github https://github.com/bytebeats
- * @created on 2020/8/27 15:14
- * @version 1.0
- * @description HttpEntityCloser is an abstract base class associated with HTTP.
+ * @Author bytebeats
+ * @Email <happychinapc@gmail.com>
+ * @Github https://github.com/bytebeats
+ * @Created on 2020/9/18 20:09
+ * @Version 1.0
+ * @Description DailyQuoteConnectionCloser is an abstract base class associated with HTTP
  */
 
-abstract class HttpEntityCloser(
+abstract class DailyQuoteConnectionCloser(
     open val url: String,
     val formData: MutableMap<String, String> = mutableMapOf(),
-    val langs: MutableMap<Lang, String> = mutableMapOf(),
     val httpClient: CloseableHttpClient = HttpClients.createDefault()
 ) {
 
