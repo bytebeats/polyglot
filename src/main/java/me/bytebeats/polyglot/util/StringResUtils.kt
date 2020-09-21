@@ -75,5 +75,9 @@ class StringResUtils {
         const val POLYGLOT_SOGOU = "搜狗"
         const val POLYGLOT_TENCENT = "腾讯"
         const val POLYGLOT_YOUDAO = "有道"
+
+        const val QUOTOR_SCALLOP = "扇贝"
+        const val QUOTOR_ICIBA = "金山词霸"
+        const val QUOTOR_YOUDAO = "有道"
     }
 }

@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>me.bytebeats.polyglot</id>
     <name>Polyglot Translators</name>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
     <idea-version since-build="173.*" until-build="202.*" />
 
@@ -19,8 +19,8 @@
       提供了百度, 必应, 谷歌, 搜狗, 有道, 欧米, 腾讯等多种翻译器来提供翻译服务.<br>
       v1.0.1 updated configure files.<br>
       更新了相关配置.<br>
-      v1.0.2 provided the changed notes description in English.<br>
-      v1.0.3 updated since build version.<br>
+      v1.0.2 supported switching source and target languages.<br>
+      v1.1.0 offers daily quote service for English lover.<br>
     ]]>
     </change-notes>
 
@@ -32,6 +32,8 @@
         <applicationService serviceImplementation="me.bytebeats.polyglot.ui.PolyglotSettingState" />
         <toolWindow icon="/icon_polyglot.png" anchor="left" id="polyglot"
             factoryClass="me.bytebeats.polyglot.ui.PolyglotWindow" />
+        <applicationConfigurable id="polyglot_setting" instance="me.bytebeats.polyglot.ui.SettingWindow"
+            displayName="Polyglot Translators" />
     </extensions>
 
     <actions>

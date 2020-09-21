@@ -14,8 +14,8 @@ import me.bytebeats.polyglot.lang.Lang
 class PolyglotUtils {
     companion object {
         val LANGS_DEFAULT = setOf(
-            Lang.ZH, Lang.CHT, Lang.WYW, Lang.EN, Lang.FRA, Lang.DE, Lang.JP, Lang.KOR, Lang.RU, Lang.SPA, Lang.IT,
-            Lang.VIE, Lang.TH, Lang.ARA, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
+            Lang.ZH, Lang.CHT, Lang.EN, Lang.FRA, Lang.DE, Lang.JP, Lang.KOR, Lang.RU, Lang.SPA, Lang.IT, Lang.VIE,
+            Lang.TH, Lang.ARA, Lang.YUE, Lang.WYW, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
             Lang.FRM, Lang.PER
         )
 

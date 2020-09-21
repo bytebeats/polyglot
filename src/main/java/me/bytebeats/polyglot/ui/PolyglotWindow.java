@@ -5,7 +5,9 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowFactory;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
+import me.bytebeats.polyglot.dq.AbstractDailyQuoter;
 import me.bytebeats.polyglot.lang.Lang;
+import me.bytebeats.polyglot.meta.DailyQuote;
 import me.bytebeats.polyglot.tlr.AbstractPolyglot;
 import me.bytebeats.polyglot.util.LogUtils;
 import me.bytebeats.polyglot.util.PolyglotUtils;
@@ -16,7 +18,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import java.awt.event.ItemEvent;
+import java.awt.event.*;
 import java.util.List;
 
 /**
@@ -47,22 +49,19 @@ public class PolyglotWindow implements ToolWindowFactory {
     private JButton plgt_target_lang_copy;
     private JPanel plgt_target_panel;
     private JPanel plgt_target_ouput_panel;
-    private JPanel plgt_to_do;
+    private JPanel plgt_daily_quote_panel;
+    private JLabel daily_quote_label;
+    private JLabel daily_quote_content;
+    private JLabel daily_quote_translation;
 
-    private String from = "";
-    private String to = "";
+    private String from = PolyglotSettingState.getInstance().getFrom();
+    private String to = PolyglotSettingState.getInstance().getTo();
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content polyglotContent = contentFactory.createContent(polyglot_panel, StringResUtils.APP_NAME_DESC, true);
         toolWindow.getContentManager().addContent(polyglotContent);
-    }
-
-    @Override
-    public void init(@NotNull ToolWindow toolWindow) {
-        from = PolyglotSettingState.getInstance().getFrom();
-        to = PolyglotSettingState.getInstance().getTo();
         initComboBoxes();
         plgt_translate_btn.addActionListener(e -> {
             if (from != null && from.equals(to)) {
@@ -82,11 +81,55 @@ public class PolyglotWindow implements ToolWindowFactory {
             clipboard.setContents(selection, null);
             LogUtils.INSTANCE.info("Copy succeeded");
         });
-        plgt_source_lang_cb.setSelectedItem(from);
-        plgt_target_langs_cb.setSelectedItem(to);
+        polyglot_panel.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                super.componentShown(e);
+                plgt_source_lang_cb.setSelectedItem(from);
+                plgt_target_langs_cb.setSelectedItem(to);
+                requestDailyQuote();
+            }
+        });
+        plgt_langs_switch.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                String lang = from;
+                from = to;
+                to = lang;
+                plgt_source_lang_cb.setSelectedItem(from);
+                plgt_target_langs_cb.setSelectedItem(to);
+                String text = plgt_source_lang_input.getText();
+                plgt_source_lang_input.setText(plgt_target_lang_output.getText());
+                plgt_target_lang_output.setText(text);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
     }
 
     private void initComboBoxes() {
+        for (Lang lang : PolyglotUtils.Companion.getLANGS_DEFAULT()) {
+            plgt_source_lang_cb.addItem(lang.getDesc());
+            plgt_target_langs_cb.addItem(lang.getDesc());
+        }
         plgt_source_lang_cb.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 from = (String) plgt_source_lang_cb.getSelectedItem();
@@ -101,13 +144,32 @@ public class PolyglotWindow implements ToolWindowFactory {
                 updateTranslators();
             }
         });
-        for (Lang lang : PolyglotUtils.Companion.getLANGS_DEFAULT()) {
-            plgt_source_lang_cb.addItem(lang.getDesc());
-            plgt_target_langs_cb.addItem(lang.getDesc());
+    }
+
+    @Override
+    public void init(@NotNull ToolWindow toolWindow) {
+        plgt_source_lang_cb.setSelectedItem(from);
+        plgt_target_langs_cb.setSelectedItem(to);
+        requestDailyQuote();
+    }
+
+    private void requestDailyQuote() {
+        if (PolyglotSettingState.getInstance().isDailyQuoterOn()) {
+            DailyQuote quote = AbstractDailyQuoter.Factory.newInstance(PolyglotSettingState.getInstance().getDailyQuoter()).quote();
+            if (quote != null) {
+                plgt_daily_quote_panel.setVisible(true);
+                daily_quote_label.setText(String.format("每日一句: %s", quote.getDate()));
+                daily_quote_content.setText(quote.getContent());
+                daily_quote_translation.setText(quote.getTranslation());
+            } else {
+                plgt_daily_quote_panel.setVisible(false);
+            }
+        } else {
+            plgt_daily_quote_panel.setVisible(false);
         }
     }
 
-    private void updateTranslators() {
+    private void updateTranslators() {// different translators may support different languages.
         plgt_translator_cb.removeAllItems();
         List<String> polyglots = PolyglotUtils.Companion.getSupportedPolyglot(Lang.Companion.from(from), Lang.Companion.from(to));
         for (String plgtDesc : polyglots) {
