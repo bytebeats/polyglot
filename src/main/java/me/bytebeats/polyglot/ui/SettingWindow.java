@@ -60,6 +60,7 @@ public class SettingWindow implements Configurable {
                 super.componentHidden(e);
             }
         });
+        daily_quote_providers.setSelectedItem(PolyglotSettingState.getInstance().getDailyQuoter());
         return polyglot_setting;
     }
 
