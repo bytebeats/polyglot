@@ -20,6 +20,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author bytebeats
@@ -56,6 +57,8 @@ public class PolyglotWindow implements ToolWindowFactory {
 
     private String from = PolyglotSettingState.getInstance().getFrom();
     private String to = PolyglotSettingState.getInstance().getTo();
+
+    private List<String> descs = PolyglotUtils.Companion.getLANGS_DEFAULT().stream().map(lang -> lang.getDesc()).collect(Collectors.toList());
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
@@ -126,9 +129,9 @@ public class PolyglotWindow implements ToolWindowFactory {
     }
 
     private void initComboBoxes() {
-        for (Lang lang : PolyglotUtils.Companion.getLANGS_DEFAULT()) {
-            plgt_source_lang_cb.addItem(lang.getDesc());
-            plgt_target_langs_cb.addItem(lang.getDesc());
+        for (String desc : descs) {
+            plgt_source_lang_cb.addItem(desc);
+            plgt_target_langs_cb.addItem(desc);
         }
         plgt_source_lang_cb.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -148,8 +151,9 @@ public class PolyglotWindow implements ToolWindowFactory {
 
     @Override
     public void init(@NotNull ToolWindow toolWindow) {
-        plgt_source_lang_cb.setSelectedItem(from);
-        plgt_target_langs_cb.setSelectedItem(to);
+        plgt_source_lang_cb.setSelectedItem(descs.indexOf(from));
+        plgt_target_langs_cb.setSelectedItem(descs.indexOf(to));
+        updateTranslators();
         requestDailyQuote();
     }
 

@@ -9,4 +9,4 @@ package me.bytebeats.polyglot.meta
  * @Description DailyQuote is basic data structure
  */
 
-class DailyQuote(var date: String, var content: String, var translation: String)
+class DailyQuote(val date: String, val content: String, val translation: String)
