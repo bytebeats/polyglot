@@ -163,8 +163,8 @@ public class PolyglotWindow implements ToolWindowFactory {
             if (quote != null) {
                 plgt_daily_quote_panel.setVisible(true);
                 daily_quote_label.setText(String.format("每日一句: %s", quote.getDate()));
-                daily_quote_content.setText(quote.getContent());
-                daily_quote_translation.setText(quote.getTranslation());
+                daily_quote_content.setText(quote.getMultilineContent());
+                daily_quote_translation.setText(quote.getMultilineTranslation());
             } else {
                 plgt_daily_quote_panel.setVisible(false);
             }

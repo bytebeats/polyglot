@@ -1,9 +1,9 @@
 <idea-plugin>
     <id>me.bytebeats.polyglot</id>
     <name>Polyglot Translators</name>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <idea-version since-build="173.*" until-build="202.*" />
+    <idea-version since-build="173.0" />
 
     <description><![CDATA[
       Polyglot: to translate different languages with different translators!</br>
@@ -21,6 +21,7 @@
       更新了相关配置.<br>
       v1.0.2 supported switching source and target languages.<br>
       v1.1.0 offers daily quote service for English lover.<br>
+      v1.1.1 ui bugs.<br>
     ]]>
     </change-notes>
 
