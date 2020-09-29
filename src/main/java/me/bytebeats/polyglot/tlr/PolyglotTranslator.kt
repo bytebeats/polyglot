@@ -11,19 +11,19 @@ import me.bytebeats.polyglot.util.StringResUtils
  * @description TO-DO
  */
 
-enum class PolyglotTranslator(val idx: String, val des: String) {
-    Baidu("baidu", StringResUtils.POLYGLOT_BAIDU),
-    Bing("bing", StringResUtils.POLYGLOT_BING),
-    Google("google", StringResUtils.POLYGLOT_GOOGLE),
-    Omi("omi", StringResUtils.POLYGLOT_OMI),
-    Sogou("sogou", StringResUtils.POLYGLOT_SOGOU),
-    Tencent("tencent", StringResUtils.POLYGLOT_TENCENT),
-    Youdao("youdao", StringResUtils.POLYGLOT_YOUDAO);
+enum class PolyglotTranslator(val idx: String, val desc: String, val descEN: String) {
+    Baidu("baidu", StringResUtils.POLYGLOT_BAIDU, StringResUtils.POLYGLOT_BAIDU_EN),
+    Bing("bing", StringResUtils.POLYGLOT_BING, StringResUtils.POLYGLOT_BING_EN),
+    Google("google", StringResUtils.POLYGLOT_GOOGLE, StringResUtils.POLYGLOT_GOOGLE_EN),
+    Omi("omi", StringResUtils.POLYGLOT_OMI, StringResUtils.POLYGLOT_OMI_EN),
+    Sogou("sogou", StringResUtils.POLYGLOT_SOGOU, StringResUtils.POLYGLOT_SOGOU_EN),
+    Tencent("tencent", StringResUtils.POLYGLOT_TENCENT, StringResUtils.POLYGLOT_TENCENT_EN),
+    Youdao("youdao", StringResUtils.POLYGLOT_YOUDAO, StringResUtils.POLYGLOT_YOUDAO_EN);
 
     companion object {
-        fun from(des: String): PolyglotTranslator {
+        fun from(desc: String): PolyglotTranslator {
             for (t in values()) {
-                if (t.des == des) return t
+                if (t.desc == desc || t.descEN == desc) return t
             }
             return Baidu
         }

@@ -76,8 +76,83 @@ class StringResUtils {
         const val POLYGLOT_TENCENT = "腾讯"
         const val POLYGLOT_YOUDAO = "有道"
 
+        /**
+         * Daily quoters
+         */
         const val QUOTOR_SCALLOP = "扇贝"
         const val QUOTOR_ICIBA = "金山词霸"
         const val QUOTOR_YOUDAO = "有道"
+
+        /**
+         * Languages
+         */
+        const val LANG_DESC_AUTO_EN = "Auto"
+        const val LANG_DESC_ZH_EN = "Simplified CHS"
+        const val LANG_DESC_CHT_EN = "Traditional CHS"
+        const val LANG_DESC_EN_EN = "English"
+        const val LANG_DESC_JP_EN = "Japanese"
+        const val LANG_DESC_FR_EN = "French"
+        const val LANG_DESC_SPA_EN = "Spanish"
+        const val LANG_DESC_PT_EN = "Portuguese"
+        const val LANG_DESC_KR_EN = "Korean"
+        const val LANG_DESC_DE_EN = "German"
+        const val LANG_DESC_RU_EN = "Russian"
+        const val LANG_DESC_ARA_EN = "Arabic"
+        const val LANG_DESC_TR_EN = "Turkish"
+        const val LANG_DESC_PL_EN = "Polish"
+        const val LANG_DESC_DAN_EN = "Danish"
+        const val LANG_DESC_YUE_EN = "Cantonese"
+        const val LANG_DESC_TH_EN = "Thai"
+        const val LANG_DESC_VIE_EN = "Vietnamese"
+        const val LANG_DESC_ID_EN = "Indonesian"
+        const val LANG_DESC_MS_EN = "Malay"
+        const val LANG_DESC_HI_EN = "Hindi"
+        const val LANG_DESC_IR_EN = "Iranian"
+        const val LANG_DESC_WYW_EN = "Classical CHS"
+        const val LANG_DESC_IT_EN = "Italian"
+        const val LANG_DESC_KK_EN = "Kazakh"
+        const val LANG_DESC_FIL_EN = "Filipino"
+        const val LANG_DESC_ICE_EN = "Icelandic"
+        const val LANG_DESC_FIN_EN = "Finnish"
+        const val LANG_DESC_NL_EN = "Dutch"
+        const val LANG_DESC_TAT_EN = "Tatar"
+        const val LANG_DESC_KUR_EN = "Kurdish"
+
+        /**
+         * Ancient languages
+         */
+        const val LANG_DESC_LAT_EN = "Latin"
+        const val LANG_DESC_SAN_EN = "Sanskrit"
+        const val LANG_DESC_ARG_EN = "Aragonese"
+        const val LANG_DESC_GRA_EN = "Ancient Greek"
+        const val LANG_DESC_KLI_EN = "Klingon"
+        const val LANG_DESC_HEB_EN = "Hebrew"
+        const val LANG_DESC_ENO_EN = "Old English"
+        const val LANG_DESC_FRM_EN = "Middle French"
+        const val LANG_DESC_PER_EN = "Persian"
+
+        /**
+         * Polyglots
+         */
+        const val POLYGLOT_BAIDU_EN = "Baidu"
+        const val POLYGLOT_BING_EN = "Bing"
+        const val POLYGLOT_GOOGLE_EN = "Google"
+        const val POLYGLOT_OMI_EN = "Omi"
+        const val POLYGLOT_SOGOU_EN = "Sogou"
+        const val POLYGLOT_TENCENT_EN = "Tencent"
+        const val POLYGLOT_YOUDAO_EN = "Youdao"
+
+        /**
+         * Daily quoters
+         */
+        const val QUOTOR_SCALLOP_EN = "Shanbay"
+        const val QUOTOR_ICIBA_EN = "Iciba"
+        const val QUOTOR_YOUDAO_EN = "Youdao"
+
+        /**
+         * Preferred languages
+         */
+        const val PREFERRED_LANG_CN = "中文"
+        const val PREFERRED_LANG_EN = "English"
     }
 }
