@@ -61,13 +61,20 @@ abstract class AbstractDailyQuoter(url: String) : DailyQuoteConnectionCloser(url
     fun getToday(): String = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.now())
 
     companion object Factory {
-        fun newInstance(quotor: String): AbstractDailyQuoter =
-            when (quotor) {
+        fun newInstance(quoter: String): AbstractDailyQuoter =
+            when (quoter) {
                 StringResUtils.QUOTOR_SCALLOP -> ScallopDailyQuoter()
                 StringResUtils.QUOTOR_ICIBA -> IcibaDailyQuoter()
                 StringResUtils.QUOTOR_YOUDAO -> YoudaoDailyQuoter()
                 else -> YoudaoDailyQuoter()
             }
+        fun newInstance(quoter: DailyQuoter): AbstractDailyQuoter =
+                when (quoter) {
+                    DailyQuoter.SCALLOP -> ScallopDailyQuoter()
+                    DailyQuoter.ICIBA -> IcibaDailyQuoter()
+                    DailyQuoter.YOUDAO -> YoudaoDailyQuoter()
+                    else -> YoudaoDailyQuoter()
+                }
 
 //        @JvmStatic
 //        fun main(args: Array<String>) {

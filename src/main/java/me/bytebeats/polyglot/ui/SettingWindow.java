@@ -3,12 +3,13 @@ package me.bytebeats.polyglot.ui;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.util.NlsContexts;
+import me.bytebeats.polyglot.dq.DailyQuoter;
+import me.bytebeats.polyglot.meta.DailyQuote;
+import me.bytebeats.polyglot.util.PolyglotUtils;
 import me.bytebeats.polyglot.util.StringResUtils;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.ItemEvent;
 
 /**
@@ -24,6 +25,9 @@ public class SettingWindow implements Configurable {
     private JPanel polyglot_setting;
     private JCheckBox daily_quote_switch;
     private JComboBox daily_quote_providers;
+    private JComboBox preferred_lang_provider;
+    private JLabel preferred_lang;
+    private JPanel preferred_lang_panel;
 
     @Override
     public @NlsContexts.ConfigurableName String getDisplayName() {
@@ -33,12 +37,19 @@ public class SettingWindow implements Configurable {
     @Nullable
     @Override
     public JComponent createComponent() {
-        daily_quote_providers.addItem(StringResUtils.QUOTOR_SCALLOP);
-        daily_quote_providers.addItem(StringResUtils.QUOTOR_YOUDAO);
-        daily_quote_providers.addItem(StringResUtils.QUOTOR_ICIBA);
+        inflateDailyQuoterProviders();
         daily_quote_providers.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 PolyglotSettingState.getInstance().setDailyQuoter(daily_quote_providers.getSelectedItem().toString());
+            }
+        });
+        preferred_lang_provider.addItem(StringResUtils.PREFERRED_LANG_EN);
+        preferred_lang_provider.addItem(StringResUtils.PREFERRED_LANG_CN);
+        preferred_lang_provider.setSelectedItem(PolyglotSettingState.getInstance().getPreferredLang());
+        preferred_lang_provider.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                PolyglotSettingState.getInstance().setPreferredLang(preferred_lang_provider.getSelectedItem().toString());
+                inflateDailyQuoterProviders();
             }
         });
         daily_quote_switch.addItemListener(e -> {
@@ -46,22 +57,25 @@ public class SettingWindow implements Configurable {
             daily_quote_providers.setEnabled(on);
             PolyglotSettingState.getInstance().setDailyQuoterOn(on);
         });
-        polyglot_setting.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentShown(ComponentEvent e) {
-                super.componentShown(e);
-                PolyglotSettingState state = PolyglotSettingState.getInstance();
-                daily_quote_providers.setSelectedItem(state.getDailyQuoter());
-                daily_quote_switch.setSelected(state.isDailyQuoterOn());
-            }
-
-            @Override
-            public void componentHidden(ComponentEvent e) {
-                super.componentHidden(e);
-            }
-        });
-        daily_quote_providers.setSelectedItem(PolyglotSettingState.getInstance().getDailyQuoter());
         return polyglot_setting;
+    }
+
+    private void inflateDailyQuoterProviders() {
+        daily_quote_providers.removeAllItems();
+        int idx = 0;
+        String dailyQuoterDesc = PolyglotSettingState.getInstance().getDailyQuoter();
+        for (int i = 0; i < DailyQuoter.values().length; i++) {
+            DailyQuoter quoter = DailyQuoter.values()[i];
+            if (PolyglotSettingState.getInstance().isCnPreferred()) {
+                daily_quote_providers.addItem(quoter.getDesc());
+            } else {
+                daily_quote_providers.addItem(quoter.getDescEn());
+            }
+            if (dailyQuoterDesc.equals(quoter.getDesc()) || dailyQuoterDesc.equals(quoter.getDescEn())) {
+                idx = i;
+            }
+        }
+        daily_quote_providers.setSelectedItem(idx);
     }
 
     @Override

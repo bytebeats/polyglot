@@ -1,6 +1,8 @@
 package me.bytebeats.polyglot.util
 
+import me.bytebeats.polyglot.dq.DailyQuoter
 import me.bytebeats.polyglot.lang.Lang
+import me.bytebeats.polyglot.tlr.PolyglotTranslator
 
 /**
  * @author bytebeats
@@ -13,65 +15,64 @@ import me.bytebeats.polyglot.lang.Lang
 
 class PolyglotUtils {
     companion object {
-        val LANGS_DEFAULT = setOf(
-            Lang.ZH, Lang.CHT, Lang.EN, Lang.FRA, Lang.DE, Lang.JP, Lang.KOR, Lang.RU, Lang.SPA, Lang.IT, Lang.VIE,
-            Lang.TH, Lang.ARA, Lang.YUE, Lang.WYW, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
-            Lang.FRM, Lang.PER
+        val LANGS_DEFAULT = listOf(
+                Lang.ZH, Lang.CHT, Lang.EN, Lang.FRA, Lang.DE, Lang.JP, Lang.KOR, Lang.RU, Lang.SPA, Lang.IT, Lang.VIE,
+                Lang.TH, Lang.ARA, Lang.YUE, Lang.WYW, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
+                Lang.FRM, Lang.PER
         )
 
-        private val LANGS_BAIDU = setOf(
-            Lang.ZH, Lang.CHT, Lang.YUE, Lang.WYW, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA,
-            Lang.PT, Lang.TR, Lang.IT, Lang.ARA, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
-            Lang.FRM, Lang.PER
+        private val LANGS_BAIDU = listOf(
+                Lang.ZH, Lang.CHT, Lang.YUE, Lang.WYW, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA,
+                Lang.PT, Lang.TR, Lang.IT, Lang.ARA, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
+                Lang.FRM, Lang.PER
         )
 
-        private val LANGS_BING = setOf(
-            Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.ARA,
-            Lang.TH, Lang.VIE
+        private val LANGS_BING = listOf(
+                Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.ARA,
+                Lang.TH, Lang.VIE
         )
-        private val LANGS_GOOGLE = setOf(
-            Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.VIE,
-            Lang.TH, Lang.ARA
+        private val LANGS_GOOGLE = listOf(
+                Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.VIE,
+                Lang.TH, Lang.ARA
         )
-        private val LANGS_OMI = setOf(Lang.ZH, Lang.EN)
-        private val langsSupportedBySogou = setOf(
-            Lang.AUTO, Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT,
-            Lang.VIE, Lang.TH, Lang.ARA
+        private val LANGS_OMI = listOf(Lang.ZH, Lang.EN)
+        private val langsSupportedBySogou = listOf(
+                Lang.AUTO, Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT,
+                Lang.VIE, Lang.TH, Lang.ARA
         )
-        private val LANGS_TENCENT = setOf(
-            Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.TR, Lang.PT,
-            Lang.VIE, Lang.ID, Lang.TH, Lang.MS, Lang.HI
+        private val LANGS_TENCENT = listOf(
+                Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.TR, Lang.PT,
+                Lang.VIE, Lang.ID, Lang.TH, Lang.MS, Lang.HI
         )
-        private val LANGS_YOUDAO = setOf(
-            Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.CHT, Lang.DE, Lang.SPA, Lang.IT, Lang.PT,
-            Lang.VIE, Lang.ID, Lang.TH, Lang.ARA, Lang.NL
+        private val LANGS_YOUDAO = listOf(
+                Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.CHT, Lang.DE, Lang.SPA, Lang.IT, Lang.PT,
+                Lang.VIE, Lang.ID, Lang.TH, Lang.ARA, Lang.NL
         )
 
-        fun getSupportedPolyglot(from: Lang, to: Lang): List<String> {
-            val polyglots = mutableListOf<String>()
-            if (LANGS_BAIDU.contains(from) && LANGS_BAIDU.contains(to)) {
-                polyglots.add(StringResUtils.POLYGLOT_BAIDU)
+        fun getSupportedPolyglot(from: Lang, to: Lang): List<PolyglotTranslator> {
+            val polyglots = mutableListOf<PolyglotTranslator>()
+            if (LANGS_GOOGLE.contains(from) && LANGS_GOOGLE.contains(to)) {
+                polyglots.add(PolyglotTranslator.Google)
             }
             if (LANGS_BING.contains(from) && LANGS_BING.contains(to)) {
-                polyglots.add(StringResUtils.POLYGLOT_BING)
+                polyglots.add(PolyglotTranslator.Bing)
             }
-            if (LANGS_GOOGLE.contains(from) && LANGS_GOOGLE.contains(to)) {
-                polyglots.add(StringResUtils.POLYGLOT_GOOGLE)
+            if (LANGS_BAIDU.contains(from) && LANGS_BAIDU.contains(to)) {
+                polyglots.add(PolyglotTranslator.Baidu)
             }
             if (LANGS_OMI.contains(from) && LANGS_OMI.contains(to)) {
-                polyglots.add(StringResUtils.POLYGLOT_OMI)
+                polyglots.add(PolyglotTranslator.Omi)
             }
             if (langsSupportedBySogou.contains(from) && langsSupportedBySogou.contains(to)) {
-                polyglots.add(StringResUtils.POLYGLOT_SOGOU)
+                polyglots.add(PolyglotTranslator.Sogou)
             }
             if (LANGS_TENCENT.contains(from) && LANGS_TENCENT.contains(to)) {
-                polyglots.add(StringResUtils.POLYGLOT_TENCENT)
+                polyglots.add(PolyglotTranslator.Tencent)
             }
             if (LANGS_YOUDAO.contains(from) && LANGS_YOUDAO.contains(to)) {
-                polyglots.add(StringResUtils.POLYGLOT_YOUDAO)
+                polyglots.add(PolyglotTranslator.Youdao)
             }
             return polyglots
         }
-
     }
 } 

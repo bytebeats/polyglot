@@ -23,6 +23,7 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
     private String from = StringResUtils.LANG_DESC_ZH;
     private String to = StringResUtils.LANG_DESC_EN;
     private String dailyQuoter = StringResUtils.QUOTOR_SCALLOP;
+    private String preferredLang = StringResUtils.PREFERRED_LANG_EN;
     private boolean isDailyQuoterOn = true;
 
     public static PolyglotSettingState getInstance() {
@@ -77,5 +78,17 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
 
     public void setDailyQuoterOn(boolean dailyQuoterOn) {
         isDailyQuoterOn = dailyQuoterOn;
+    }
+
+    public String getPreferredLang() {
+        return preferredLang;
+    }
+
+    public void setPreferredLang(String preferredLang) {
+        this.preferredLang = preferredLang;
+    }
+
+    public boolean isCnPreferred() {
+        return StringResUtils.PREFERRED_LANG_CN.equals(getPreferredLang());
     }
 }
