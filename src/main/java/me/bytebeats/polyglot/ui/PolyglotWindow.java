@@ -56,6 +56,8 @@ public class PolyglotWindow implements ToolWindowFactory {
     private JLabel daily_quote_label;
     private JLabel daily_quote_content;
     private JLabel daily_quote_translation;
+    private JLabel lang_pref_label;
+    private JComboBox preferred_langs_cb;
 
     private String from = PolyglotSettingState.getInstance().getFrom();
     private String to = PolyglotSettingState.getInstance().getTo();
@@ -94,8 +96,8 @@ public class PolyglotWindow implements ToolWindowFactory {
                 String lang = from;
                 from = to;
                 to = lang;
-                plgt_source_lang_cb.setSelectedItem(langs.indexOf(Lang.Companion.from(from)));
-                plgt_target_langs_cb.setSelectedItem(langs.indexOf(Lang.Companion.from(to)));
+                plgt_source_lang_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(from)));
+                plgt_target_langs_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(to)));
                 String text = plgt_source_lang_input.getText();
                 plgt_source_lang_input.setText(plgt_target_lang_output.getText());
                 plgt_target_lang_output.setText(text);
@@ -125,6 +127,9 @@ public class PolyglotWindow implements ToolWindowFactory {
 
     @Override
     public void init(@NotNull ToolWindow toolWindow) {
+        updateWidgetLiterals();
+        plgt_source_lang_cb.removeAllItems();
+        plgt_target_langs_cb.removeAllItems();
         for (Lang lang : langs) {
             if (PolyglotSettingState.getInstance().isCnPreferred()) {
                 plgt_source_lang_cb.addItem(lang.getDesc());
@@ -148,10 +153,47 @@ public class PolyglotWindow implements ToolWindowFactory {
                 updateTranslators();
             }
         });
-        plgt_source_lang_cb.setSelectedItem(langs.indexOf(Lang.Companion.from(from)));
-        plgt_target_langs_cb.setSelectedItem(langs.indexOf(Lang.Companion.from(to)));
+        plgt_source_lang_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(from)));
+        plgt_target_langs_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(to)));
         updateTranslators();
         requestDailyQuote();
+        preferred_langs_cb.removeAllItems();
+        preferred_langs_cb.addItem(StringResUtils.PREFERRED_LANG_CN);
+        preferred_langs_cb.addItem(StringResUtils.PREFERRED_LANG_EN);
+        preferred_langs_cb.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                String preferred = (String) preferred_langs_cb.getSelectedItem();
+                PolyglotSettingState.getInstance().setPreferredLang(preferred);
+                updateWidgetLiterals();
+                plgt_source_lang_cb.removeAllItems();
+                plgt_target_langs_cb.removeAllItems();
+                for (Lang lang : langs) {
+                    if (PolyglotSettingState.getInstance().isCnPreferred()) {
+                        plgt_source_lang_cb.addItem(lang.getDesc());
+                        plgt_target_langs_cb.addItem(lang.getDesc());
+                    } else {
+                        plgt_source_lang_cb.addItem(lang.getDescEN());
+                        plgt_target_langs_cb.addItem(lang.getDescEN());
+                    }
+                }
+                plgt_source_lang_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(from)));
+                plgt_target_langs_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(to)));
+                requestDailyQuote();
+            }
+        });
+        preferred_langs_cb.setSelectedItem(PolyglotSettingState.getInstance().getPreferredLang());
+    }
+
+    private void updateWidgetLiterals() {
+        if (PolyglotSettingState.getInstance().isCnPreferred()) {
+            plgt_source_label.setText(StringResUtils.TEXT_SRC_LANG);
+            plgt_target_lang_label.setText(StringResUtils.TEXT_TRGT_LANG);
+            plgt_translator_label.setText(StringResUtils.TEXT_TRANSLATORS);
+        } else {
+            plgt_source_label.setText(StringResUtils.TEXT_SRC_LANG_EN);
+            plgt_target_lang_label.setText(StringResUtils.TEXT_TRGT_LANG_EN);
+            plgt_translator_label.setText(StringResUtils.TEXT_TRANSLATORS_EN);
+        }
     }
 
     private void requestDailyQuote() {
