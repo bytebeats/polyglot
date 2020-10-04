@@ -127,7 +127,6 @@ public class PolyglotWindow implements ToolWindowFactory {
 
     @Override
     public void init(@NotNull ToolWindow toolWindow) {
-        updateWidgetLiterals();
         plgt_source_lang_cb.removeAllItems();
         plgt_target_langs_cb.removeAllItems();
         for (Lang lang : langs) {
@@ -182,6 +181,7 @@ public class PolyglotWindow implements ToolWindowFactory {
             }
         });
         preferred_langs_cb.setSelectedItem(PolyglotSettingState.getInstance().getPreferredLang());
+        updateWidgetLiterals();
     }
 
     private void updateWidgetLiterals() {
