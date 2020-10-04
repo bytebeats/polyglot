@@ -154,5 +154,16 @@ class StringResUtils {
          */
         const val PREFERRED_LANG_CN = "中文"
         const val PREFERRED_LANG_EN = "English"
+
+        /**
+         * literals
+         */
+        const val TEXT_SRC_LANG = "源语言"
+        const val TEXT_TRGT_LANG = "目标语言"
+        const val TEXT_TRANSLATORS = "翻译器"
+
+        const val TEXT_SRC_LANG_EN = "Source Langs"
+        const val TEXT_TRGT_LANG_EN = "Target Langs"
+        const val TEXT_TRANSLATORS_EN = "Translators"
     }
 }
