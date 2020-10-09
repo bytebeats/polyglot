@@ -51,7 +51,7 @@
  # More plugins
  * [mns](https://github.com/bytebeats/mns) : Money Never Sleeps
  * [kfiglet](https://github.com/bytebeats/kfiglet) Ascii Arts
- * JsonParser
+ * Json Master
  
  # Contributors
  
