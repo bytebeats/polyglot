@@ -1,6 +1,5 @@
 package me.bytebeats.polyglot.util
 
-import me.bytebeats.polyglot.dq.DailyQuoter
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.PolyglotTranslator
 
@@ -36,7 +35,7 @@ class PolyglotUtils {
                 Lang.TH, Lang.ARA
         )
         private val LANGS_OMI = listOf(Lang.ZH, Lang.EN)
-        private val langsSupportedBySogou = listOf(
+        private val LANGS_SOGOU = listOf(
                 Lang.AUTO, Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT,
                 Lang.VIE, Lang.TH, Lang.ARA
         )
@@ -49,21 +48,34 @@ class PolyglotUtils {
                 Lang.VIE, Lang.ID, Lang.TH, Lang.ARA, Lang.NL
         )
 
-        fun getSupportedPolyglot(from: Lang, to: Lang): List<PolyglotTranslator> {
+        @JvmStatic
+        fun getSupportedPolyglot(from: Lang, to: Lang, isCnPreferred: Boolean = true): List<PolyglotTranslator> {
             val polyglots = mutableListOf<PolyglotTranslator>()
-            if (LANGS_GOOGLE.contains(from) && LANGS_GOOGLE.contains(to)) {
-                polyglots.add(PolyglotTranslator.Google)
-            }
-            if (LANGS_BING.contains(from) && LANGS_BING.contains(to)) {
-                polyglots.add(PolyglotTranslator.Bing)
-            }
-            if (LANGS_BAIDU.contains(from) && LANGS_BAIDU.contains(to)) {
-                polyglots.add(PolyglotTranslator.Baidu)
+            if (isCnPreferred) {
+                if (LANGS_BAIDU.contains(from) && LANGS_BAIDU.contains(to)) {
+                    polyglots.add(PolyglotTranslator.Baidu)
+                }
+                if (LANGS_GOOGLE.contains(from) && LANGS_GOOGLE.contains(to)) {
+                    polyglots.add(PolyglotTranslator.Google)
+                }
+                if (LANGS_BING.contains(from) && LANGS_BING.contains(to)) {
+                    polyglots.add(PolyglotTranslator.Bing)
+                }
+            } else {
+                if (LANGS_GOOGLE.contains(from) && LANGS_GOOGLE.contains(to)) {
+                    polyglots.add(PolyglotTranslator.Google)
+                }
+                if (LANGS_BING.contains(from) && LANGS_BING.contains(to)) {
+                    polyglots.add(PolyglotTranslator.Bing)
+                }
+                if (LANGS_BAIDU.contains(from) && LANGS_BAIDU.contains(to)) {
+                    polyglots.add(PolyglotTranslator.Baidu)
+                }
             }
             if (LANGS_OMI.contains(from) && LANGS_OMI.contains(to)) {
                 polyglots.add(PolyglotTranslator.Omi)
             }
-            if (langsSupportedBySogou.contains(from) && langsSupportedBySogou.contains(to)) {
+            if (LANGS_SOGOU.contains(from) && LANGS_SOGOU.contains(to)) {
                 polyglots.add(PolyglotTranslator.Sogou)
             }
             if (LANGS_TENCENT.contains(from) && LANGS_TENCENT.contains(to)) {
