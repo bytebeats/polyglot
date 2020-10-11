@@ -216,7 +216,7 @@ public class PolyglotWindow implements ToolWindowFactory {
 
     private void updateTranslators() {// different translators may support different languages.
         plgt_translator_cb.removeAllItems();
-        List<PolyglotTranslator> polyglots = PolyglotUtils.Companion.getSupportedPolyglot(Lang.Companion.from(from), Lang.Companion.from(to));
+        List<PolyglotTranslator> polyglots = PolyglotUtils.Companion.getSupportedPolyglot(Lang.Companion.from(from), Lang.Companion.from(to), true);
         for (PolyglotTranslator translator : polyglots) {
             if (PolyglotSettingState.getInstance().isCnPreferred()) {
                 plgt_translator_cb.addItem(translator.getDesc());
