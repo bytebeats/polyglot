@@ -30,14 +30,16 @@ abstract class TranslatorConnectionCloser(
      * @param httpEntity http entity
      * @param httpResponse http response
      */
-    fun close(httpEntity: HttpEntity?, httpResponse: CloseableHttpResponse?) {
+    fun close(httpEntity: HttpEntity?, httpResponse: CloseableHttpResponse?, closeClient: Boolean = true) {
         try {
             EntityUtils.consume(httpEntity)
             httpResponse?.close()
         } catch (e: IOException) {
             LogUtils.info(e.message)
         } finally {
-            httpClient.close()
+            if (closeClient) {
+                httpClient.close()
+            }
         }
     }
 

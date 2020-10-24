@@ -26,6 +26,7 @@ class GooglePolyglot() : AbstractPolyglot(URL) {
     }
 
     override fun addSupportedLanguages() {
+        langs[Lang.AUTO] = "auto"
         langs[Lang.ZH] = "zh-CN"
         langs[Lang.CHT] = "zh-TW"
         langs[Lang.EN] = "en"

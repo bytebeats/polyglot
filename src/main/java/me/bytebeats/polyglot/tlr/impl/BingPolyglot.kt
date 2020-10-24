@@ -25,6 +25,7 @@ class BingPolyglot() : AbstractPolyglot(URL) {
     }
 
     override fun addSupportedLanguages() {
+        langs[Lang.AUTO] = "auto-detect"
         langs[Lang.ZH] = "zh-Hans"
         langs[Lang.CHT] = "zh-Hant"
         langs[Lang.EN] = "en"

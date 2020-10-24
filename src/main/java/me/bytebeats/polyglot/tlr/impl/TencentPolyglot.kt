@@ -23,6 +23,7 @@ class TencentPolyglot() : AbstractPolyglot(URL) {
     }
 
     override fun addSupportedLanguages() {
+        langs[Lang.AUTO] = "auto"
         langs[Lang.ZH] = "zh"
         langs[Lang.EN] = "en"
         langs[Lang.JP] = "jp"
