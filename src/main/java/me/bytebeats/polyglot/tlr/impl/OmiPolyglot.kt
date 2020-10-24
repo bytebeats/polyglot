@@ -23,6 +23,7 @@ class OmiPolyglot() : AbstractPolyglot(URL) {
     }
 
     override fun addSupportedLanguages() {
+        langs[Lang.AUTO] = "undef"
         langs[Lang.ZH] = "c"
         langs[Lang.EN] = "e"
     }
@@ -97,7 +98,11 @@ class OmiPolyglot() : AbstractPolyglot(URL) {
     }
 
     override fun addFormData(from: Lang, to: Lang, text: String) {
-        formData["languageType"] = "${langs[from]}2${langs[to]}"
+        if (from == Lang.AUTO) {
+            formData["languageType"] = "${langs[from]}"
+        } else {
+            formData["languageType"] = "${langs[from]}2${langs[to]}"
+        }
         formData["sentsToTrans"] = text.trim()
     }
 }

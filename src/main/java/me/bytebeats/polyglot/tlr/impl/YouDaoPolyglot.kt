@@ -24,6 +24,7 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
     }
 
     override fun addSupportedLanguages() {
+        langs[Lang.AUTO] = "AUTO"
         langs[Lang.ZH] = "zh-CHS"
         langs[Lang.EN] = "en"
         langs[Lang.JP] = "ja"

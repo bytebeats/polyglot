@@ -60,12 +60,13 @@ public class PolyglotWindow implements ToolWindowFactory {
     private String from = PolyglotSettingState.getInstance().getFrom();
     private String to = PolyglotSettingState.getInstance().getTo();
 
-    private List<Lang> langs = PolyglotUtils.Companion.getLANGS_DEFAULT();
+    private final List<Lang> fromLangs = PolyglotUtils.Companion.getDEFAULT_FROM_LANGS();
+    private final List<Lang> toLangs = PolyglotUtils.Companion.getDEFAULT_TO_LANGS();
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
-        Content polyglotContent = contentFactory.createContent(polyglot_panel, StringResUtils.APP_NAME_DESC, true);
+        Content polyglotContent = contentFactory.createContent(polyglot_panel, "", true);
         toolWindow.getContentManager().addContent(polyglotContent);
         plgt_translate_btn.addActionListener(e -> {
             if (from != null && from.equals(to)) {
@@ -88,14 +89,14 @@ public class PolyglotWindow implements ToolWindowFactory {
         plgt_langs_switch.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (from.equals(to)) {
+                if (from.equals(to) || from.equals(Lang.AUTO.getDesc()) || from.equals(Lang.AUTO.getDescEN())) {
                     return;
                 }
                 String lang = from;
                 from = to;
                 to = lang;
-                plgt_source_lang_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(from)));
-                plgt_target_langs_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(to)));
+                plgt_source_lang_cb.setSelectedIndex(fromLangs.indexOf(Lang.Companion.from(from)));
+                plgt_target_langs_cb.setSelectedIndex(toLangs.indexOf(Lang.Companion.from(to)));
                 String text = plgt_source_lang_input.getText();
                 plgt_source_lang_input.setText(plgt_target_lang_output.getText());
                 plgt_target_lang_output.setText(text);
@@ -127,12 +128,17 @@ public class PolyglotWindow implements ToolWindowFactory {
     public void init(@NotNull ToolWindow toolWindow) {
         plgt_source_lang_cb.removeAllItems();
         plgt_target_langs_cb.removeAllItems();
-        for (Lang lang : langs) {
+        for (Lang lang : fromLangs) {
             if (PolyglotSettingState.getInstance().isCnPreferred()) {
                 plgt_source_lang_cb.addItem(lang.getDesc());
-                plgt_target_langs_cb.addItem(lang.getDesc());
             } else {
                 plgt_source_lang_cb.addItem(lang.getDescEN());
+            }
+        }
+        for (Lang lang : toLangs) {
+            if (PolyglotSettingState.getInstance().isCnPreferred()) {
+                plgt_target_langs_cb.addItem(lang.getDesc());
+            } else {
                 plgt_target_langs_cb.addItem(lang.getDescEN());
             }
         }
@@ -150,8 +156,8 @@ public class PolyglotWindow implements ToolWindowFactory {
                 updateTranslators();
             }
         });
-        plgt_source_lang_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(from)));
-        plgt_target_langs_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(to)));
+        plgt_source_lang_cb.setSelectedIndex(fromLangs.indexOf(Lang.Companion.from(from)));
+        plgt_target_langs_cb.setSelectedIndex(toLangs.indexOf(Lang.Companion.from(to)));
         updateTranslators();
         requestDailyQuote();
         preferred_langs_cb.removeAllItems();
@@ -164,17 +170,22 @@ public class PolyglotWindow implements ToolWindowFactory {
                 updateWidgetLiterals();
                 plgt_source_lang_cb.removeAllItems();
                 plgt_target_langs_cb.removeAllItems();
-                for (Lang lang : langs) {
+                for (Lang lang : fromLangs) {
                     if (PolyglotSettingState.getInstance().isCnPreferred()) {
                         plgt_source_lang_cb.addItem(lang.getDesc());
-                        plgt_target_langs_cb.addItem(lang.getDesc());
                     } else {
                         plgt_source_lang_cb.addItem(lang.getDescEN());
+                    }
+                }
+                for (Lang lang : toLangs) {
+                    if (PolyglotSettingState.getInstance().isCnPreferred()) {
+                        plgt_target_langs_cb.addItem(lang.getDesc());
+                    } else {
                         plgt_target_langs_cb.addItem(lang.getDescEN());
                     }
                 }
-                plgt_source_lang_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(from)));
-                plgt_target_langs_cb.setSelectedIndex(langs.indexOf(Lang.Companion.from(to)));
+                plgt_source_lang_cb.setSelectedIndex(fromLangs.indexOf(Lang.Companion.from(from)));
+                plgt_target_langs_cb.setSelectedIndex(toLangs.indexOf(Lang.Companion.from(to)));
                 requestDailyQuote();
             }
         });
@@ -216,7 +227,7 @@ public class PolyglotWindow implements ToolWindowFactory {
 
     private void updateTranslators() {// different translators may support different languages.
         plgt_translator_cb.removeAllItems();
-        List<PolyglotTranslator> polyglots = PolyglotUtils.Companion.getSupportedPolyglot(Lang.Companion.from(from), Lang.Companion.from(to), true);
+        List<PolyglotTranslator> polyglots = PolyglotUtils.Companion.getSupportedPolyglot(Lang.Companion.from(from), Lang.Companion.from(to), PolyglotSettingState.getInstance().isCnPreferred());
         for (PolyglotTranslator translator : polyglots) {
             if (PolyglotSettingState.getInstance().isCnPreferred()) {
                 plgt_translator_cb.addItem(translator.getDesc());
