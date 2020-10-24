@@ -86,7 +86,7 @@ class StringResUtils {
         /**
          * Languages
          */
-        const val LANG_DESC_AUTO_EN = "Auto"
+        const val LANG_DESC_AUTO_EN = "Auto-detect"
         const val LANG_DESC_ZH_EN = "Simplified CHS"
         const val LANG_DESC_CHT_EN = "Traditional CHS"
         const val LANG_DESC_EN_EN = "English"

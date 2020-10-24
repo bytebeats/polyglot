@@ -3,6 +3,7 @@ package me.bytebeats.polyglot.tlr.impl
 import com.fasterxml.jackson.databind.ObjectMapper
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.AbstractPolyglot
+import me.bytebeats.polyglot.ui.PolyglotSettingState
 import me.bytebeats.polyglot.util.GlotJsUtils
 import me.bytebeats.polyglot.util.LogUtils
 import org.apache.http.client.methods.HttpGet
@@ -20,9 +21,10 @@ import javax.script.ScriptEngineManager
  * @description GooglePolyglot depends on Google-translate-cn to offer translation service
  */
 
-class GooglePolyglot() : AbstractPolyglot(URL) {
+class GooglePolyglot() : AbstractPolyglot(URL_CN) {
     companion object {
-        private const val URL = "https://translate.google.cn/translate_a/single"
+        private const val URL_CN = "https://translate.google.cn/translate_a/single"
+        private const val URL = "https://translate.google.com/translate_a/single"
     }
 
     override fun addSupportedLanguages() {
@@ -51,6 +53,13 @@ class GooglePolyglot() : AbstractPolyglot(URL) {
         }
         return dst.toString()
     }
+
+    override val url: String
+        get() = if (PolyglotSettingState.getInstance().isCnPreferred) {
+            URL_CN
+        } else {
+            URL
+        }
 
     override fun query(): String {
         val uri = URIBuilder(url)
