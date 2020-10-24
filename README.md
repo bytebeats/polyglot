@@ -40,7 +40,7 @@
  
      Open Collective | 支付宝/Alipay | 微信/Wechat | PayPal
      -------------- | -------------- | -------------- | --------------
-     To-Do | ![alipay](receipts/alipay_receipt.png) | ![wechat](receipts/wechat_receipt.png) | <a href=https://www.paypal.me/bytesbeat>Support</a>
+     <a href=https://opencollective.com/polyglot-collective>polyglot Collective</a> | ![alipay](receipts/alipay_receipt.png) | ![wechat](receipts/wechat_receipt.png) | <a href=https://www.paypal.me/bytesbeat>Support</a>
  
  <br>使用支付宝/微信支付捐赠后请留言或者通过邮件提供您的名字/昵称和网站，格式为：</br>
  <br>名字/昵称 [<网站>][：留言]（网站与留言为可选部分，例子：bytebeats <github.com/bytebeats>：加油！）</br>
