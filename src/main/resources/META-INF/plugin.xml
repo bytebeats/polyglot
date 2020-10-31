@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>me.bytebeats.polyglot</id>
     <name>Polyglot Translators</name>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
     <idea-version since-build="173.0" />
 
@@ -24,6 +24,7 @@
       v1.1.1 ui bugs.<br>
       v1.1.2 preferred language.<br>
       v1.2.0 automatically detect source language.<br>
+      v1.3.0 consult a dictionary to translate the selected word.<br>
     ]]>
     </change-notes>
 
@@ -35,12 +36,11 @@
         <applicationService serviceImplementation="me.bytebeats.polyglot.ui.PolyglotSettingState" />
         <toolWindow icon="/icon_polyglot.png" anchor="left" id="polyglot"
             factoryClass="me.bytebeats.polyglot.ui.PolyglotWindow" />
-        <applicationConfigurable id="polyglot_setting" instance="me.bytebeats.polyglot.ui.SettingWindow"
+        <applicationConfigurable id="polyglot_setting" instance="me.bytebeats.polyglot.ui.PolyglotPreferencesWindow"
             displayName="Polyglot Translators" />
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
     </actions>
 
 </idea-plugin>

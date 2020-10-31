@@ -11,7 +11,7 @@ import me.bytebeats.polyglot.lang.Lang
  * @description ITranslator will execute a task to translate text over http.
  */
 
-interface ITranslator {
+interface IPolyglot {
     /**
      * The control center includes parameter setting, sending HTTP request, receiving
      * and parsing text data.

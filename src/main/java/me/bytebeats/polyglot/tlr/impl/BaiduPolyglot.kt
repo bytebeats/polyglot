@@ -1,17 +1,14 @@
 package me.bytebeats.polyglot.tlr.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import me.bytebeats.polyglot.http.FormDataAdder
+import me.bytebeats.polyglot.http.PolyglotFormDataAdder
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.AbstractPolyglot
 import me.bytebeats.polyglot.util.GlotJsUtils
 import me.bytebeats.polyglot.util.LogUtils
 import me.bytebeats.polyglot.util.ParamUtils
-import org.apache.http.client.HttpClient
 import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
-import org.apache.http.client.utils.HttpClientUtils
-import org.apache.http.impl.client.HttpClients
 import org.apache.http.util.EntityUtils
 import javax.script.Invocable
 import javax.script.ScriptEngineManager
@@ -101,7 +98,7 @@ class BaiduPolyglot() : AbstractPolyglot(URL) {
             form["query"] = formData["query"]!!
             request.entity = UrlEncodedFormEntity(ParamUtils.map2List(form), "UTF-8")
             request.addHeader("Cookie", COOKIE_VALUE)
-            request.addHeader("User-Agent", FormDataAdder.USER_AGENT)
+            request.addHeader("User-Agent", PolyglotFormDataAdder.USER_AGENT)
             val response = httpClient.execute(request)
             val entity = response.entity
             val entityStr = EntityUtils.toString(entity, "UTF-8")
@@ -113,7 +110,7 @@ class BaiduPolyglot() : AbstractPolyglot(URL) {
         val request = HttpPost(url)
         request.entity = UrlEncodedFormEntity(ParamUtils.map2List(formData), "UTF-8")
         request.addHeader("Cookie", COOKIE_VALUE)
-        request.addHeader("User-Agent", FormDataAdder.USER_AGENT)
+        request.addHeader("User-Agent", PolyglotFormDataAdder.USER_AGENT)
         val response = httpClient.execute(request)
         val entity = response.entity
         val result = EntityUtils.toString(entity, "UTF-8")

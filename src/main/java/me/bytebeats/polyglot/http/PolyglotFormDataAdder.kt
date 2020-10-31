@@ -12,7 +12,7 @@ import me.bytebeats.polyglot.lang.Lang
  * HTTP request parameters.
  */
 
-interface FormDataAdder {
+interface PolyglotFormDataAdder {
     /**
      * Set the request parameters that will be sent to the server.
      * @param from source language
