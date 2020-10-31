@@ -1,7 +1,7 @@
 package me.bytebeats.polyglot.tlr.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import me.bytebeats.polyglot.http.FormDataAdder
+import me.bytebeats.polyglot.http.PolyglotFormDataAdder
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.AbstractPolyglot
 import me.bytebeats.polyglot.util.GlotJsUtils
@@ -93,7 +93,7 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
             "https://fanyi.sogou.com/?keyword=${formData["text"]}&transfrom=${formData["from"]}&transto=${formData["to"]}"
         )
         //It's very important
-        request.setHeader("User-Agent", FormDataAdder.USER_AGENT)
+        request.setHeader("User-Agent", PolyglotFormDataAdder.USER_AGENT)
         //It's very important
         request.setHeader(
             "Cookie",

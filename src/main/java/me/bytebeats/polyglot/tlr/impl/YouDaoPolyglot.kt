@@ -1,7 +1,7 @@
 package me.bytebeats.polyglot.tlr.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import me.bytebeats.polyglot.http.FormDataAdder
+import me.bytebeats.polyglot.http.PolyglotFormDataAdder
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.AbstractPolyglot
 import me.bytebeats.polyglot.util.ParamUtils
@@ -97,7 +97,7 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
         request.setHeader("Host", "fanyi.youdao.com")
         request.setHeader("Origin", "http://fanyi.youdao.com")
         request.addHeader("Referer", "http://fanyi.youdao.com/")
-        request.addHeader("User-Agent", FormDataAdder.USER_AGENT)
+        request.addHeader("User-Agent", PolyglotFormDataAdder.USER_AGENT)
 
         val response = httpClient.execute(request)
         val entity = response.entity
@@ -119,7 +119,7 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
         formData["sign"] = ParamUtils.md5("${client}${text}${salt}]BjuETDhU)zqSxf-=B#7m") ?: ""//sign
         formData["lts"] = ts//ts
         formData["bv"] =
-            ParamUtils.md5(FormDataAdder.USER_AGENT.substring(FormDataAdder.USER_AGENT.indexOf('/') + 1))!!//bv
+            ParamUtils.md5(PolyglotFormDataAdder.USER_AGENT.substring(PolyglotFormDataAdder.USER_AGENT.indexOf('/') + 1))!!//bv
         formData["doctype"] = "json"
         formData["version"] = "2.1"
         formData["keyfrom"] = "fanyi.web"

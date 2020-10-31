@@ -5,6 +5,7 @@ import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
+import me.bytebeats.polyglot.lang.Lang;
 import me.bytebeats.polyglot.util.StringResUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -26,6 +27,11 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
     private String preferredLang = StringResUtils.PREFERRED_LANG_EN;
     private boolean isDailyQuoterOn = true;
 
+    private String appID = StringResUtils.YOUDAO_APP_ID;
+    private String appKey = StringResUtils.YOUDAO_APP_KEY;
+    private boolean isSelectWordToConsultOn = true;
+    private String dictionary = Lang.EN.getDesc();
+
     public static PolyglotSettingState getInstance() {
         return ServiceManager.getService(PolyglotSettingState.class);
     }
@@ -46,6 +52,10 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
         to = StringResUtils.LANG_DESC_EN;
         dailyQuoter = StringResUtils.QUOTOR_SCALLOP;
         isDailyQuoterOn = true;
+        isSelectWordToConsultOn = true;
+        appID = StringResUtils.YOUDAO_APP_ID;
+        appKey = StringResUtils.YOUDAO_APP_KEY;
+        dictionary = Lang.EN.getDesc();
     }
 
     public String getFrom() {
@@ -90,5 +100,37 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
 
     public boolean isCnPreferred() {
         return StringResUtils.PREFERRED_LANG_CN.equals(getPreferredLang());
+    }
+
+    public String getAppID() {
+        return appID;
+    }
+
+    public void setAppID(String appID) {
+        this.appID = appID;
+    }
+
+    public String getAppKey() {
+        return appKey;
+    }
+
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
+    }
+
+    public boolean isSelectWordToConsultOn() {
+        return isSelectWordToConsultOn;
+    }
+
+    public void setSelectWordToConsultOn(boolean selectWordToConsultOn) {
+        isSelectWordToConsultOn = selectWordToConsultOn;
+    }
+
+    public String getDictionary() {
+        return dictionary;
+    }
+
+    public void setDictionary(String dictionary) {
+        this.dictionary = dictionary;
     }
 }

@@ -1,7 +1,7 @@
 package me.bytebeats.polyglot.tlr.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import me.bytebeats.polyglot.http.FormDataAdder
+import me.bytebeats.polyglot.http.PolyglotFormDataAdder
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.AbstractPolyglot
 import me.bytebeats.polyglot.util.ParamUtils
@@ -75,7 +75,7 @@ class IcibaPolyglot() : AbstractPolyglot(URL) {
         request.setHeader("Host", "ifanyi.iciba.com")
         request.setHeader("Origin", "http://www.iciba.com")
         request.addHeader("Referer", "http://www.iciba.com/fy")
-        request.addHeader("User-Agent", FormDataAdder.USER_AGENT)
+        request.addHeader("User-Agent", PolyglotFormDataAdder.USER_AGENT)
         val response = httpClient.execute(request)
         val entity = response.entity
         val result = EntityUtils.toString(entity, "utf-8")

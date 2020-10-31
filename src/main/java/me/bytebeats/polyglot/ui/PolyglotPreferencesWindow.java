@@ -4,8 +4,6 @@ import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.util.NlsContexts;
 import me.bytebeats.polyglot.dq.DailyQuoter;
-import me.bytebeats.polyglot.meta.DailyQuote;
-import me.bytebeats.polyglot.util.PolyglotUtils;
 import me.bytebeats.polyglot.util.StringResUtils;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,27 +14,34 @@ import java.awt.event.ItemEvent;
  * @Author bytebeats
  * @Email <happychinapc@gmail.com>
  * @Github https://github.com/bytebeats
- * @Created on 2020/9/18 19:48
+ * @Created on 2020/10/31 16:23
  * @Version 1.0
- * @Description SettingWindow offers preferences.
+ * @Description TO-DO
  */
 
-public class SettingWindow implements Configurable {
-    private JPanel polyglot_setting;
+public class PolyglotPreferencesWindow implements Configurable {
+    private JPanel polyglot_pref_panel;
     private JCheckBox daily_quote_switch;
-    private JComboBox daily_quote_providers;
-    private JComboBox preferred_lang_provider;
+    private JComboBox<String> daily_quote_providers;
+    private JComboBox<String> preferred_lang_provider;
+    private JRadioButton dict_you_dao_rb;
+    private JTextField dict_app_id;
+    private JTextField dict_app_key;
     private JLabel preferred_lang;
-    private JPanel preferred_lang_panel;
+    private JCheckBox consult_dict_cb;
+    private JLabel dict_app_id_label;
+    private JLabel dict_app_key_label;
+    private JComboBox dict_cb;
+    private JLabel dict_label;
 
     @Override
     public @NlsContexts.ConfigurableName String getDisplayName() {
-        return polyglot_setting.getToolTipText();
+        return polyglot_pref_panel.getToolTipText();
     }
 
-    @Nullable
     @Override
-    public JComponent createComponent() {
+    public @Nullable
+    JComponent createComponent() {
         inflateDailyQuoterProviders();
         daily_quote_providers.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -57,7 +62,12 @@ public class SettingWindow implements Configurable {
             daily_quote_providers.setEnabled(on);
             PolyglotSettingState.getInstance().setDailyQuoterOn(on);
         });
-        return polyglot_setting;
+        consult_dict_cb.addItemListener(e -> {
+            boolean on = e.getStateChange() == ItemEvent.SELECTED;
+            dict_you_dao_rb.setEnabled(on);
+            PolyglotSettingState.getInstance().setSelectWordToConsultOn(on);
+        });
+        return polyglot_pref_panel;
     }
 
     private void inflateDailyQuoterProviders() {
@@ -88,21 +98,23 @@ public class SettingWindow implements Configurable {
         PolyglotSettingState state = PolyglotSettingState.getInstance();
         state.setDailyQuoter(daily_quote_providers.getSelectedItem().toString());
         state.setDailyQuoterOn(daily_quote_switch.isSelected());
+        state.setSelectWordToConsultOn(consult_dict_cb.isSelected());
     }
 
     @Override
     public void reset() {
         daily_quote_switch.setSelected(PolyglotSettingState.getInstance().isDailyQuoterOn());
+        consult_dict_cb.setSelected(PolyglotSettingState.getInstance().isSelectWordToConsultOn());
         daily_quote_providers.setSelectedItem(PolyglotSettingState.getInstance().getDailyQuoter());
     }
 
     @Override
     public void disposeUIResources() {
-        polyglot_setting = null;
+
     }
 
     @Override
     public JComponent getPreferredFocusedComponent() {
-        return polyglot_setting;
+        return polyglot_pref_panel;
     }
 }

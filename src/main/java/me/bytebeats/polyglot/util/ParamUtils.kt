@@ -82,5 +82,21 @@ class ParamUtils {
             }
             return String(chars)
         }
+
+        fun sha256(input: String?): String? {
+            if (input == null) return null
+            try {
+                val msgDigest = MessageDigest.getInstance("SHA-256")
+                val inputBytes = input.toByteArray(Charsets.UTF_8)
+                msgDigest.update(inputBytes)
+                val md5Bytes = msgDigest.digest()
+                return bytes2Hex(md5Bytes)
+            } catch (e: NoSuchAlgorithmException) {
+                LogUtils.info(e.message)
+            } catch (e: UnsupportedEncodingException) {
+                LogUtils.info(e.message)
+            }
+            return ""
+        }
     }
 }

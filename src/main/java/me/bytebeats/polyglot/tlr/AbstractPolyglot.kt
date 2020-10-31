@@ -2,8 +2,8 @@ package me.bytebeats.polyglot.tlr
 
 import me.bytebeats.polyglot.util.LogUtils
 import me.bytebeats.polyglot.http.TranslatorConnectionCloser
-import me.bytebeats.polyglot.http.FormDataAdder
-import me.bytebeats.polyglot.http.ITranslator
+import me.bytebeats.polyglot.http.PolyglotFormDataAdder
+import me.bytebeats.polyglot.http.IPolyglot
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.impl.*
 import me.bytebeats.polyglot.util.StringResUtils
@@ -21,7 +21,7 @@ import java.io.IOException
  * result to achieve the the purpose of translation.
  */
 
-abstract class AbstractPolyglot(url: String) : TranslatorConnectionCloser(url), FormDataAdder, ITranslator {
+abstract class AbstractPolyglot(url: String) : TranslatorConnectionCloser(url), PolyglotFormDataAdder, IPolyglot {
     init {
         addSupportedLanguages()
     }
