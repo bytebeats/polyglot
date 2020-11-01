@@ -24,7 +24,7 @@
       v1.1.1 ui bugs.<br>
       v1.1.2 preferred language.<br>
       v1.2.0 automatically detect source language.<br>
-      v1.3.0 consult a dictionary to translate the selected word.<br>
+      v1.3.0 consult a dictionary to translate the selected words.<br>
     ]]>
     </change-notes>
 
@@ -41,6 +41,11 @@
     </extensions>
 
     <actions>
+        <action class="me.bytebeats.polyglot.dict.action.ConsultDictAction" id="PolyglotDictionaryActionId">
+            <add-to-group group-id="EditMenu" anchor="last" />
+            <add-to-group group-id="EditorPopupMenu" anchor="first" />
+            <keyboard-shortcut first-keystroke="ctrl alt P" keymap="$default" second-keystroke="ctrl alt shift P" />
+        </action>
     </actions>
 
 </idea-plugin>

@@ -7,6 +7,7 @@ import me.bytebeats.polyglot.dict.meta.YouDaoTranslation
 import me.bytebeats.polyglot.http.TranslatorConnectionCloser
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.ui.PolyglotSettingState
+import me.bytebeats.polyglot.util.StringResUtils
 import java.io.IOException
 
 /**
@@ -18,7 +19,7 @@ import java.io.IOException
  * @Description TO-DO
  */
 
-abstract class AbstractDictionary(val listener: DictConsultListener? = null, url: String) :
+abstract class AbstractDictionary(var listener: DictConsultListener? = null, url: String) :
         TranslatorConnectionCloser(url), DictionaryFormDataAdder, IDictionary {
 
     init {
@@ -28,9 +29,8 @@ abstract class AbstractDictionary(val listener: DictConsultListener? = null, url
     abstract fun addSupportedLangs()
 
     override fun consult(text: String) {
-//        val dictionary = PolyglotSettingState.getInstance().dictionary
-//        addFormData(Lang.from(dictionary), text)
-        addFormData(Lang.ZH, text)
+        val dictionary = PolyglotSettingState.getInstance().dictLang
+        addFormData(Lang.from(dictionary), text)
         try {
             val translation = parse(query())
             if (translation?.isSuccessful() == true) {
@@ -66,23 +66,31 @@ abstract class AbstractDictionary(val listener: DictConsultListener? = null, url
     @Throws(Exception::class)
     abstract fun query(): String
 
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            println("youdao dictionary")
-            YouDaoDictionary(object : DictConsultListener {
-                override fun onSuccess(translation: YouDaoTranslation) {
-                    println(translation.format())
-                }
+    companion object Factory {
 
-                override fun onFailure(message: String) {
-                    println(message)
-                }
-
-                override fun onError(error: String) {
-                    println(error)
-                }
-            }).consult("remain")
+        fun newInstance(desc: String, listener: DictConsultListener): AbstractDictionary {
+            return when (desc) {
+                StringResUtils.POLYGLOT_YOUDAO, StringResUtils.QUOTOR_YOUDAO_EN -> YouDaoDictionary(listener)
+                else -> YouDaoDictionary(listener)
+            }
         }
+
+//        @JvmStatic
+//        fun main(args: Array<String>) {
+//            println("youdao dictionary")
+//            YouDaoDictionary(object : DictConsultListener {
+//                override fun onSuccess(translation: YouDaoTranslation) {
+//                    println(translation.format())
+//                }
+//
+//                override fun onFailure(message: String) {
+//                    println(message)
+//                }
+//
+//                override fun onError(error: String) {
+//                    println(error)
+//                }
+//            }).consult("remain")
+//        }
     }
 }

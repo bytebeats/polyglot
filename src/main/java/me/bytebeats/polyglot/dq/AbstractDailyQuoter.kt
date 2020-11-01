@@ -63,18 +63,18 @@ abstract class AbstractDailyQuoter(url: String) : DailyQuoteConnectionCloser(url
     companion object Factory {
         fun newInstance(quoter: String): AbstractDailyQuoter =
             when (quoter) {
-                StringResUtils.QUOTOR_SCALLOP -> ScallopDailyQuoter()
-                StringResUtils.QUOTOR_ICIBA -> IcibaDailyQuoter()
-                StringResUtils.QUOTOR_YOUDAO -> YoudaoDailyQuoter()
+                StringResUtils.QUOTOR_SCALLOP, StringResUtils.QUOTOR_SCALLOP_EN -> ScallopDailyQuoter()
+                StringResUtils.QUOTOR_ICIBA, StringResUtils.QUOTOR_ICIBA_EN -> IcibaDailyQuoter()
+                StringResUtils.QUOTOR_YOUDAO, StringResUtils.QUOTOR_YOUDAO_EN -> YoudaoDailyQuoter()
                 else -> YoudaoDailyQuoter()
             }
+
         fun newInstance(quoter: DailyQuoter): AbstractDailyQuoter =
-                when (quoter) {
-                    DailyQuoter.SCALLOP -> ScallopDailyQuoter()
-                    DailyQuoter.ICIBA -> IcibaDailyQuoter()
-                    DailyQuoter.YOUDAO -> YoudaoDailyQuoter()
-                    else -> YoudaoDailyQuoter()
-                }
+            when (quoter) {
+                DailyQuoter.SCALLOP -> ScallopDailyQuoter()
+                DailyQuoter.ICIBA -> IcibaDailyQuoter()
+                DailyQuoter.YOUDAO -> YoudaoDailyQuoter()
+            }
 
 //        @JvmStatic
 //        fun main(args: Array<String>) {

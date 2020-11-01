@@ -27,10 +27,11 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
     private String preferredLang = StringResUtils.PREFERRED_LANG_EN;
     private boolean isDailyQuoterOn = true;
 
-    private String appID = StringResUtils.YOUDAO_APP_ID;
-    private String appKey = StringResUtils.YOUDAO_APP_KEY;
+    private String appID = "";
+    private String appKey = "";
     private boolean isSelectWordToConsultOn = true;
-    private String dictionary = Lang.EN.getDesc();
+    private String dict = StringResUtils.POLYGLOT_YOUDAO;//字典, 有道, 谷歌, 百度或者必应
+    private String dictLang = Lang.ZH.getDesc();//字典中要查询的目标语言, 比如英语, 法语, 日语等
 
     public static PolyglotSettingState getInstance() {
         return ServiceManager.getService(PolyglotSettingState.class);
@@ -53,9 +54,9 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
         dailyQuoter = StringResUtils.QUOTOR_SCALLOP;
         isDailyQuoterOn = true;
         isSelectWordToConsultOn = true;
-        appID = StringResUtils.YOUDAO_APP_ID;
-        appKey = StringResUtils.YOUDAO_APP_KEY;
-        dictionary = Lang.EN.getDesc();
+        appID = "";
+        appKey = "";
+        dictLang = Lang.ZH.getDesc();
     }
 
     public String getFrom() {
@@ -126,11 +127,19 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
         isSelectWordToConsultOn = selectWordToConsultOn;
     }
 
-    public String getDictionary() {
-        return dictionary;
+    public String getDict() {
+        return dict;
     }
 
-    public void setDictionary(String dictionary) {
-        this.dictionary = dictionary;
+    public void setDict(String dict) {
+        this.dict = dict;
+    }
+
+    public String getDictLang() {
+        return dictLang;
+    }
+
+    public void setDictLang(String dictLang) {
+        this.dictLang = dictLang;
     }
 }

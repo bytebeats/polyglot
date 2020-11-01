@@ -165,8 +165,5 @@ class StringResUtils {
         const val TEXT_SRC_LANG_EN = "Source Langs"
         const val TEXT_TRGT_LANG_EN = "Target Langs"
         const val TEXT_TRANSLATORS_EN = "Translators"
-
-        const val YOUDAO_APP_ID = "0de194293a5be337"
-        const val YOUDAO_APP_KEY = "KQrktgEdLOinQuQ5LhWLETxWyu9x4UVw"
     }
 }

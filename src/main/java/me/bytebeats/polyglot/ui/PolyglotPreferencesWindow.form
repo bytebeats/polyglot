@@ -64,7 +64,7 @@
         </constraints>
         <properties>
           <selected value="true"/>
-          <text value="有道字典"/>
+          <text value="有道词典"/>
         </properties>
       </component>
       <component id="671c0" class="javax.swing.JLabel" binding="dict_app_id_label">
@@ -84,7 +84,8 @@
           <forms defaultalign-horz="false"/>
         </constraints>
         <properties>
-          <text value="0de194293a5be337"/>
+          <text value="Enter App ID here"/>
+          <toolTipText value="Enter App ID here"/>
         </properties>
         <clientProperties>
           <html.disable class="java.lang.Boolean" value="false"/>
@@ -107,7 +108,8 @@
           <forms defaultalign-horz="false"/>
         </constraints>
         <properties>
-          <text value="KQrktgEdLOinQuQ5LhWLETxWyu9x4UVw"/>
+          <text value="Enter App Key here"/>
+          <toolTipText value="Enter App Key here"/>
         </properties>
       </component>
       <component id="1cb0d" class="javax.swing.JCheckBox" binding="consult_dict_cb">
@@ -121,16 +123,16 @@
           <text value="取词划译"/>
         </properties>
       </component>
-      <component id="f18e4" class="javax.swing.JLabel" binding="dict_label">
+      <component id="f18e4" class="javax.swing.JLabel" binding="dict_target_lang">
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <forms/>
         </constraints>
         <properties>
-          <text value="字典"/>
+          <text value="划义目标语言"/>
         </properties>
       </component>
-      <component id="95406" class="javax.swing.JComboBox" binding="dict_cb">
+      <component id="95406" class="javax.swing.JComboBox" binding="dict_target_cb">
         <constraints>
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <forms defaultalign-horz="false"/>

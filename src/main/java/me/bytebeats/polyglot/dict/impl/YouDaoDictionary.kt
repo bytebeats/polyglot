@@ -4,6 +4,7 @@ import me.bytebeats.polyglot.dict.AbstractDictionary
 import me.bytebeats.polyglot.dict.DictConsultListener
 import me.bytebeats.polyglot.dict.meta.YouDaoTranslation
 import me.bytebeats.polyglot.lang.Lang
+import me.bytebeats.polyglot.ui.PolyglotSettingState
 import me.bytebeats.polyglot.util.GsonUtils
 import me.bytebeats.polyglot.util.ParamUtils
 import org.apache.http.client.entity.UrlEncodedFormEntity
@@ -122,7 +123,7 @@ class YouDaoDictionary(listener: DictConsultListener) : AbstractDictionary(liste
      */
 
     override fun parse(text: String): YouDaoTranslation? {
-        val translation = GsonUtils.fromJson<YouDaoTranslation?>(text)
+        val translation = GsonUtils.getInstance().from(text, YouDaoTranslation::class.java)
         return translation?.apply { src = formData["q"]!! }
     }
 
@@ -139,10 +140,8 @@ class YouDaoDictionary(listener: DictConsultListener) : AbstractDictionary(liste
     }
 
     override fun addFormData(to: Lang, text: String) {
-//        val appID = PolyglotSettingState.getInstance().appID
-//        val appKey = PolyglotSettingState.getInstance().appKey
-        val appID = "0de194293a5be337"
-        val appKey = "KQrktgEdLOinQuQ5LhWLETxWyu9x4UVw"
+        val appID = PolyglotSettingState.getInstance().appID
+        val appKey = PolyglotSettingState.getInstance().appKey
         val curTime = (System.currentTimeMillis() / 1000).toString()
         val salt = UUID.randomUUID().toString()
         val qInSign = if (text.length <= 20) text else "${text.take(10)}${text.length}${text.takeLast(10)}"
