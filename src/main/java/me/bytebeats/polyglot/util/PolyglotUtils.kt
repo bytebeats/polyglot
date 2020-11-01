@@ -20,37 +20,37 @@ class PolyglotUtils {
             Lang.ENO, Lang.FRM, Lang.PER
         )
         val DEFAULT_TO_LANGS = listOf(
-                Lang.ZH, Lang.CHT, Lang.EN, Lang.FRA, Lang.DE, Lang.JP, Lang.KOR, Lang.RU, Lang.SPA, Lang.IT, Lang.VIE,
-                Lang.TH, Lang.ARA, Lang.YUE, Lang.WYW, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
-                Lang.FRM, Lang.PER
+            Lang.ZH, Lang.CHT, Lang.EN, Lang.FRA, Lang.DE, Lang.JP, Lang.KOR, Lang.RU, Lang.SPA, Lang.IT, Lang.VIE,
+            Lang.TH, Lang.ARA, Lang.YUE, Lang.WYW, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
+            Lang.FRM, Lang.PER
         )
 
         private val LANGS_BAIDU = listOf(
-                Lang.ZH, Lang.CHT, Lang.YUE, Lang.WYW, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA,
-                Lang.PT, Lang.TR, Lang.IT, Lang.ARA, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
-                Lang.FRM, Lang.PER, Lang.AUTO
+            Lang.ZH, Lang.CHT, Lang.YUE, Lang.WYW, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA,
+            Lang.PT, Lang.TR, Lang.IT, Lang.ARA, Lang.LAT, Lang.SAN, Lang.ARG, Lang.GRA, Lang.KLI, Lang.HEB, Lang.ENO,
+            Lang.FRM, Lang.PER, Lang.AUTO
         )
 
         private val LANGS_BING = listOf(
-                Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.ARA,
-                Lang.TH, Lang.VIE, Lang.AUTO
+            Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.ARA,
+            Lang.TH, Lang.VIE, Lang.AUTO
         )
         private val LANGS_GOOGLE = listOf(
-                Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.VIE,
-                Lang.TH, Lang.ARA, Lang.AUTO
+            Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.VIE,
+            Lang.TH, Lang.ARA, Lang.AUTO
         )
         private val LANGS_OMI = listOf(Lang.ZH, Lang.EN, Lang.AUTO)
         private val LANGS_SOGOU = listOf(
-                Lang.AUTO, Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT,
-                Lang.VIE, Lang.TH, Lang.ARA
+            Lang.AUTO, Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT,
+            Lang.VIE, Lang.TH, Lang.ARA
         )
         private val LANGS_TENCENT = listOf(
-                Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.TR, Lang.PT,
-                Lang.VIE, Lang.ID, Lang.TH, Lang.MS, Lang.HI, Lang.AUTO
+            Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT, Lang.TR, Lang.PT,
+            Lang.VIE, Lang.ID, Lang.TH, Lang.MS, Lang.HI, Lang.AUTO
         )
         private val LANGS_YOUDAO = listOf(
-                Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.CHT, Lang.DE, Lang.SPA, Lang.IT, Lang.PT,
-                Lang.VIE, Lang.ID, Lang.TH, Lang.ARA, Lang.NL, Lang.AUTO
+            Lang.ZH, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.CHT, Lang.DE, Lang.SPA, Lang.IT, Lang.PT,
+            Lang.VIE, Lang.ID, Lang.TH, Lang.ARA, Lang.NL, Lang.AUTO
         )
 
         @JvmStatic
@@ -91,5 +91,10 @@ class PolyglotUtils {
             }
             return polyglots
         }
+
+        val dictionaryTargetLangs = listOf(
+            Lang.ZH, Lang.CHT, Lang.EN, Lang.JP, Lang.KOR, Lang.FRA, Lang.RU, Lang.DE, Lang.SPA, Lang.IT,
+            Lang.VIE, Lang.TH, Lang.ARA
+        )
     }
 } 

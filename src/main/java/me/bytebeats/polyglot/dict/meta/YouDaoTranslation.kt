@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
  * @Github https://github.com/bytebeats
  * @Created on 2020/10/31 17:32
  * @Version 1.0
- * @Description TO-DO
+ * @Description YouDaoTranslation is the data structure for response of YouDao service
  */
 
 data class YouDaoTranslation(
@@ -29,7 +29,7 @@ data class YouDaoTranslation(
         105 -> "不支持的签名类型"
         106 -> "不支持的响应类型"
         107 -> "不支持的加密传输类型"
-        108 -> "appKey无效"
+        108 -> "appKey无效, \n请在 Preferences -> Other Settings -> Polyglot Translators 输入有道智云appID和appKey"
         109 -> "batchLog格式不正确"
         110 -> "无相关服务的有效实例"
         111 -> "开发者账号无效"
@@ -48,8 +48,8 @@ data class YouDaoTranslation(
         formatted.append(src)
         formatted.append(" : ")
         if (translation?.isNotEmpty() == true) {
-            translation.forEachIndexed { index, s ->
-                formatted.append(s)
+            for (index in translation.indices) {
+                formatted.append(translation[index])
                 if (index != translation.lastIndex) {
                     formatted.append(",")
                 } else {
@@ -58,7 +58,15 @@ data class YouDaoTranslation(
             }
         }
         basicExplain?.apply {
-            formatted.append("\nphonetic: [$phonetic]; US: [$phoneticUS]; UK: [$phoneticUK]")
+            if (phonetic?.isNotEmpty() == true) {
+                formatted.append("\nphonetic: [$phonetic];")
+            }
+            if (phoneticUS?.isNotEmpty() == true) {
+                formatted.append(" US: [$phoneticUS];")
+            }
+            if (phoneticUK?.isNotEmpty() == true) {
+                formatted.append(" UK: [$phoneticUK]")
+            }
             if (explains?.isNotEmpty() == true) {
                 for (s in explains) {
                     formatted.append("\n$s")
@@ -66,8 +74,9 @@ data class YouDaoTranslation(
             }
             if (wordForms?.isNotEmpty() == true) {
                 formatted.append("\n")
-                wordForms.map { it.wordForm }.forEachIndexed { index, form ->
-                    formatted.append("${form.name}: ${form.value}")
+                val forms = wordForms.map { it.wordForm }
+                for (index in forms.indices) {
+                    formatted.append("${forms[index].name}: ${forms[index].value}")
                     if (index != wordForms.lastIndex) {
                         formatted.append(", ")
                     }
@@ -80,8 +89,6 @@ data class YouDaoTranslation(
                 }
             }
         }
-
-        formatted.append(translation)
         return formatted.toString()
     }
 }

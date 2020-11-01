@@ -36,9 +36,10 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.0"
-    compile "com.fasterxml.jackson.core:jackson-databind:2.11.2"
-    compile "com.fasterxml.jackson.core:jackson-core:2.11.2"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.0"
+//    implementation "org.jetbrains.kotlin:kotlin-reflect:1.4.0"
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.11.2"
+    implementation "com.fasterxml.jackson.core:jackson-core:2.11.2"
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
@@ -58,6 +59,6 @@ patchPluginXml {
       v1.1.1 ui bugs.<br>
       v1.1.2 preferred language.<br>
       v1.2.0 automatically detect source language.<br>
-      v1.3.0 consult a dictionary to translate the selected word.<br>
+      v1.3.0 consult a dictionary to translate the selected words.<br>
       """
 }
