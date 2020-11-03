@@ -48,8 +48,11 @@ class GooglePolyglot() : AbstractPolyglot(URL_CN) {
         val mapper = ObjectMapper()
         val parent = mapper.readTree(text)[0]
         val dst = StringBuilder()
-        for (node in parent) {
-            dst.append(node[0].asText())
+        for (i in 0 until parent.size()) {
+            dst.append(parent[i][0].asText())
+            if (i != parent.size() - 1) {
+                dst.append(";")
+            }
         }
         return dst.toString()
     }

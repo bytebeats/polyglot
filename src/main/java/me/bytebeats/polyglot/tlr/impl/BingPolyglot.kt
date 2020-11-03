@@ -46,9 +46,15 @@ class BingPolyglot() : AbstractPolyglot(URL) {
      */
     override fun parse(text: String): String {
         val mapper = ObjectMapper()
-        val translation = mapper.readTree(text)[0].path("translations")[0]
-        val result = translation.path("text").asText()
-        return result
+        val translations = mapper.readTree(text)[0].path("translations")[0]
+        val result = StringBuilder()
+        for (i in 0 until translations.size()) {
+            result.append(translations[i].path("text").asText())
+            if (i != translations.size() - 1) {
+                result.append(";")
+            }
+        }
+        return result.toString()
     }
 
     override fun query(): String {
