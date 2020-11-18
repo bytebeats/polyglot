@@ -5,10 +5,14 @@ import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
+import me.bytebeats.polyglot.dict.meta.DictService;
 import me.bytebeats.polyglot.lang.Lang;
 import me.bytebeats.polyglot.util.StringResUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author bytebeats
@@ -32,6 +36,7 @@ public class PolyglotSettingState implements PersistentStateComponent<PolyglotSe
     private boolean isSelectWordToConsultOn = true;
     private String dict = StringResUtils.POLYGLOT_YOUDAO;//字典, 有道, 谷歌, 百度或者必应
     private String dictLang = Lang.ZH.getDesc();//字典中要查询的目标语言, 比如英语, 法语, 日语等
+    private HashMap<String, DictService> dictServer = new HashMap();
 
     public static PolyglotSettingState getInstance() {
         return ServiceManager.getService(PolyglotSettingState.class);
