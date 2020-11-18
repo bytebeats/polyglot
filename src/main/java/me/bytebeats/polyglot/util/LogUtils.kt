@@ -1,5 +1,10 @@
 package me.bytebeats.polyglot.util
 
+import com.intellij.notification.Notification
+import com.intellij.notification.NotificationType
+import com.intellij.notification.Notifications
+import com.intellij.openapi.project.ex.ProjectManagerEx
+
 /**
  * @author bytebeats
  * @email <happychinapc@gmail.com>
@@ -11,6 +16,13 @@ package me.bytebeats.polyglot.util
 
 object LogUtils {
     fun info(message: String?) {
-        println(message)
+        message?.apply {
+            if (isNotEmpty()) {
+                Notifications.Bus.notify(
+                    Notification("polyglot", "Polyglot", message, NotificationType.INFORMATION),
+                    ProjectManagerEx.getInstanceEx().defaultProject
+                )
+            }
+        }
     }
 }

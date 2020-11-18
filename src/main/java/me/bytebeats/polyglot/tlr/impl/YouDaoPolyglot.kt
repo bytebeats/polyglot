@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import me.bytebeats.polyglot.http.PolyglotFormDataAdder
 import me.bytebeats.polyglot.lang.Lang
 import me.bytebeats.polyglot.tlr.AbstractPolyglot
+import me.bytebeats.polyglot.util.LogUtils
 import me.bytebeats.polyglot.util.ParamUtils
 import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
@@ -73,16 +74,27 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
      */
     override fun parse(text: String): String {
         val mapper = ObjectMapper()
-        val translations = mapper.readTree(text).path("translateResult")
-        if (translations.isEmpty) return ""
+        val tree = mapper.readTree(text)
+        val translations = tree.path("translateResult")
         val dst = StringBuilder()
-        for (i in 0 until translations.size()) {
-            val node = translations[i]
-            if (node.isEmpty) continue
-            if (dst.isNotEmpty()) {
-                dst.append("\n")
+        if (!translations.isEmpty) {
+            for (i in 0 until translations.size()) {
+                val node = translations[i]
+                if (node.isEmpty) continue
+                if (dst.isNotEmpty()) {
+                    dst.append("\n")
+                }
+                dst.append(node[0].path("tgt").asText())
             }
-            dst.append(node[0].path("tgt").asText())
+        }
+        val entries = tree.path("smartResult").path("entries")
+        if (!entries.isEmpty) {
+            dst.append("\nMore:\n")
+            for (node in entries) {
+                if (!node.asText().isNullOrEmpty()) {
+                    dst.append(node.asText())
+                }
+            }
         }
         return dst.toString()
     }
@@ -102,7 +114,8 @@ class YouDaoPolyglot() : AbstractPolyglot(URL) {
         val response = httpClient.execute(request)
         val entity = response.entity
         val result = EntityUtils.toString(entity, "UTF-8")
-//        println(result)
+        println(result)
+        LogUtils.info(result)
         close(entity, response)
         return result
     }

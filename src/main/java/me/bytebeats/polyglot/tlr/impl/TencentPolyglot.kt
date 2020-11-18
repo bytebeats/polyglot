@@ -121,8 +121,11 @@ class TencentPolyglot() : AbstractPolyglot(URL) {
             return ""
         }
         val dst = StringBuilder()
-        records.forEach { node ->
-            dst.append(node.path("targetText").asText())
+        for (i in 0 until records.size()) {
+            dst.append(records[0].path("targetText").asText())
+            if (i != records.size() - 1) {
+                dst.append(";")
+            }
         }
         return dst.toString()
     }

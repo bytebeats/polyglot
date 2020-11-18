@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>me.bytebeats.polyglot</id>
     <name>Polyglot Translators</name>
-    <version>1.3.0</version>
+    <version>1.3.2</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
     <idea-version since-build="173.0" />
 
@@ -25,6 +25,8 @@
       v1.1.2 preferred language.<br>
       v1.2.0 automatically detect source language.<br>
       v1.3.0 consult a dictionary to translate the selected words.<br>
+      v1.3.1 optimized translation result.<br>
+      v1.3.2 bugs fixed.<br>
     ]]>
     </change-notes>
 
@@ -44,6 +46,9 @@
         <action class="me.bytebeats.polyglot.dict.action.ConsultDictAction" id="PolyglotDictionaryActionId">
             <add-to-group group-id="EditMenu" anchor="last" />
             <add-to-group group-id="EditorPopupMenu" anchor="first" />
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="first" />
+            <add-to-group group-id="RunMenu" anchor="first" />
+            <add-to-group group-id="BuildMenu" anchor="first" />
             <keyboard-shortcut first-keystroke="ctrl alt P" keymap="$default" second-keystroke="ctrl alt shift P" />
         </action>
     </actions>
