@@ -59,3 +59,7 @@
  # Contributors
  
  # Donates
+ 
+ ## Stargazers over time
+ 
+ [![Stargazers over time](https://starchart.cc/bytebeats/polyglot.svg)](https://starchart.cc/bytebeats/polyglot)
