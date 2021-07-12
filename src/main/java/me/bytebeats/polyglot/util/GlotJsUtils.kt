@@ -80,7 +80,7 @@ class GlotJsUtils {
           }
           return a
       }"""
-        const val JS_SOGOu = """function token() {
+        const val JS_SOGOU = """function token() {
 	    return tk = t() + t() + t() + t() + t() + t() + t() + t()
         };
         function t() {

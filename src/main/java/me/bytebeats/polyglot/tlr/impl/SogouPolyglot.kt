@@ -129,7 +129,7 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
     private fun token(): String {
         try {
             val engine = ScriptEngineManager().getEngineByName("js")
-            val reader = GlotJsUtils.getReader(GlotJsUtils.JS_SOGOu)
+            val reader = GlotJsUtils.getReader(GlotJsUtils.JS_SOGOU)
             engine.eval(reader)
             if (engine is Invocable) {
                 return engine.invokeFunction("token").toString()

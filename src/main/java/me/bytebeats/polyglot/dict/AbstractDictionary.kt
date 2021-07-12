@@ -29,7 +29,8 @@ abstract class AbstractDictionary(var listener: DictConsultListener? = null, url
     abstract fun addSupportedLangs()
 
     override fun consult(text: String) {
-        val dictionary = PolyglotSettingState.getInstance().dictLang
+//        val dictionary = PolyglotSettingState.getInstance().dictLang
+        val dictionary = StringResUtils.LANG_DESC_ZH
         addFormData(Lang.from(dictionary), text)
         try {
             val translation = parse(query())
@@ -75,22 +76,5 @@ abstract class AbstractDictionary(var listener: DictConsultListener? = null, url
             }
         }
 
-//        @JvmStatic
-//        fun main(args: Array<String>) {
-//            println("youdao dictionary")
-//            YouDaoDictionary(object : DictConsultListener {
-//                override fun onSuccess(translation: YouDaoTranslation) {
-//                    println(translation.format())
-//                }
-//
-//                override fun onFailure(message: String) {
-//                    println(message)
-//                }
-//
-//                override fun onError(error: String) {
-//                    println(error)
-//                }
-//            }).consult("remain")
-//        }
     }
 }

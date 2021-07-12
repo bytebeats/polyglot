@@ -24,6 +24,24 @@ import java.util.*
 class YouDaoDictionary(listener: DictConsultListener) : AbstractDictionary(listener, URL) {
     companion object {
         private const val URL = "https://openapi.youdao.com/api"
+
+//        @JvmStatic
+//        fun main(args: Array<String>) {
+//            println("youdao dictionary")
+//            YouDaoDictionary(object : DictConsultListener {
+//                override fun onSuccess(translation: YouDaoTranslation) {
+//                    println(translation.format())
+//                }
+//
+//                override fun onFailure(message: String) {
+//                    println(message)
+//                }
+//
+//                override fun onError(error: String) {
+//                    println(error)
+//                }
+//            }).consult("remain")
+//        }
     }
 
     override fun addSupportedLangs() {
