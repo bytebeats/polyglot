@@ -5,6 +5,7 @@ import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.util.NlsContexts;
 import me.bytebeats.polyglot.dq.DailyQuoter;
 import me.bytebeats.polyglot.lang.Lang;
+import me.bytebeats.polyglot.ui.swing.JHintTextField;
 import me.bytebeats.polyglot.util.PolyglotUtils;
 import me.bytebeats.polyglot.util.StringResUtils;
 import org.jetbrains.annotations.Nullable;
@@ -18,7 +19,7 @@ import java.awt.event.ItemEvent;
  * @Github https://github.com/bytebeats
  * @Created on 2020/10/31 16:23
  * @Version 1.0
- * @Description TO-DO
+ * @Description Setting screen
  */
 
 public class PolyglotPreferencesWindow implements Configurable {
@@ -163,5 +164,10 @@ public class PolyglotPreferencesWindow implements Configurable {
     @Override
     public JComponent getPreferredFocusedComponent() {
         return polyglot_pref_panel;
+    }
+
+    private void createUIComponents() {
+        dict_app_key = new JHintTextField("Enter App ID here");
+        dict_app_id = new JHintTextField("Enter App Key here");
     }
 }

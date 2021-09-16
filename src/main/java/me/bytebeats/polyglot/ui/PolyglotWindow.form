@@ -7,6 +7,7 @@
     </constraints>
     <properties>
       <enabled value="true"/>
+      <minimumSize width="400" height="293"/>
       <toolTipText value="Polyglot"/>
     </properties>
     <border type="none"/>

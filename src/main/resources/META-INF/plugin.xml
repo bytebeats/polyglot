@@ -1,9 +1,9 @@
 <idea-plugin>
     <id>me.bytebeats.polyglot</id>
-    <name>Polyglot Translators</name>
-    <version>1.3.2</version>
+    <name>Polyglot Translator</name>
+    <version>1.3.4</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <idea-version since-build="173.0" />
+    <idea-version since-build="200.*" />
 
     <description><![CDATA[
       Polyglot: to translate different languages with different translators!</br>
@@ -27,6 +27,7 @@
       v1.3.0 consult a dictionary to translate the selected words.<br>
       v1.3.1 optimized translation result.<br>
       v1.3.2, v1.3.3 bugs fixed.<br>
+      v1.3.4 update configurations and refactor codes.<br>
     ]]>
     </change-notes>
 
@@ -39,7 +40,9 @@
         <toolWindow icon="/icon_polyglot.png" anchor="left" id="polyglot"
             factoryClass="me.bytebeats.polyglot.ui.PolyglotWindow" />
         <applicationConfigurable id="polyglot_setting" instance="me.bytebeats.polyglot.ui.PolyglotPreferencesWindow"
-            displayName="Polyglot Translators" />
+            displayName="Polyglot Translator" />
+        <notificationGroup displayType="NONE" id="Polyglot" icon="AllIcons.General.Note" key="notification.group.name"
+            toolWindowId="Polyglot" isLogByDefault="true" />
     </extensions>
 
     <actions>
@@ -47,8 +50,6 @@
             <add-to-group group-id="EditMenu" anchor="last" />
             <add-to-group group-id="EditorPopupMenu" anchor="first" />
             <add-to-group group-id="ConsoleEditorPopupMenu" anchor="first" />
-            <add-to-group group-id="RunMenu" anchor="first" />
-            <add-to-group group-id="BuildMenu" anchor="first" />
             <keyboard-shortcut first-keystroke="ctrl alt P" keymap="$default" second-keystroke="ctrl alt shift P" />
         </action>
     </actions>

@@ -31,7 +31,7 @@ class ScallopDailyQuoter() : AbstractDailyQuoter(URL) {
         return result
     }
 
-    override fun parse(text: String): DailyQuote? {
+    override fun parse(text: String?): DailyQuote? {
         if (text.isNullOrEmpty()) return null
         val mapper = ObjectMapper()
         val json = mapper.readTree(text)
