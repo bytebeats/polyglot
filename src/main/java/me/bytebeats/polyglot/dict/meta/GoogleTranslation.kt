@@ -1,7 +1,6 @@
 package me.bytebeats.polyglot.dict.meta
 
 import com.google.gson.annotations.SerializedName
-import me.bytebeats.polyglot.lang.Lang
 
 /**
  * @Author bytebeats

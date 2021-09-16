@@ -14,7 +14,6 @@ import me.bytebeats.polyglot.dict.DictConsultListener
 import me.bytebeats.polyglot.dict.meta.YouDaoTranslation
 import me.bytebeats.polyglot.ui.PolyglotSettingState
 import me.bytebeats.polyglot.util.LogUtils
-import me.bytebeats.polyglot.util.StringResUtils
 
 /**
  * @Author bytebeats

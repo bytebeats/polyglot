@@ -56,7 +56,7 @@ class TrycanPolyglot() : AbstractPolyglot(URL) {
         val response = httpClient.execute(request)
         val entity = response.entity
         val result = EntityUtils.toString(entity, "UTF-8")
-        println(result)
+//        println(result)
         close(entity, response)
         return result
     }

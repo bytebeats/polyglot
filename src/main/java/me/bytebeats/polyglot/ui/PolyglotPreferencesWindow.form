@@ -76,7 +76,7 @@
           <text value="应用 ID"/>
         </properties>
       </component>
-      <component id="37cfe" class="javax.swing.JTextField" binding="dict_app_id">
+      <component id="37cfe" class="javax.swing.JTextField" binding="dict_app_id" custom-create="true">
         <constraints>
           <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -84,8 +84,9 @@
           <forms defaultalign-horz="false"/>
         </constraints>
         <properties>
-          <text value="Enter App ID here"/>
-          <toolTipText value="Enter App ID here"/>
+          <preferredSize width="150" height="30"/>
+          <text value=""/>
+          <toolTipText value=""/>
         </properties>
         <clientProperties>
           <html.disable class="java.lang.Boolean" value="false"/>
@@ -100,16 +101,17 @@
           <text value="应用密钥"/>
         </properties>
       </component>
-      <component id="d3747" class="javax.swing.JTextField" binding="dict_app_key">
+      <component id="d3747" class="javax.swing.JTextField" binding="dict_app_key" custom-create="true">
         <constraints>
-          <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <forms defaultalign-horz="false"/>
         </constraints>
         <properties>
-          <text value="Enter App Key here"/>
-          <toolTipText value="Enter App Key here"/>
+          <preferredSize width="150" height="30"/>
+          <text value=""/>
+          <toolTipText value=""/>
         </properties>
       </component>
       <component id="1cb0d" class="javax.swing.JCheckBox" binding="consult_dict_cb">

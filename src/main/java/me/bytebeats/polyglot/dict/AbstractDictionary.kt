@@ -6,7 +6,6 @@ import me.bytebeats.polyglot.dict.impl.YouDaoDictionary
 import me.bytebeats.polyglot.dict.meta.YouDaoTranslation
 import me.bytebeats.polyglot.http.TranslatorConnectionCloser
 import me.bytebeats.polyglot.lang.Lang
-import me.bytebeats.polyglot.ui.PolyglotSettingState
 import me.bytebeats.polyglot.util.StringResUtils
 import java.io.IOException
 
@@ -16,7 +15,7 @@ import java.io.IOException
  * @Github https://github.com/bytebeats
  * @Created on 2020/10/31 18:54
  * @Version 1.0
- * @Description TO-DO
+ * @Description AbstractDictionary
  */
 
 abstract class AbstractDictionary(var listener: DictConsultListener? = null, url: String) :

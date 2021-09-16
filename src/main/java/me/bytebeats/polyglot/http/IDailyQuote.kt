@@ -15,7 +15,6 @@ interface IDailyQuote {
 
     /**
      *  fetch today's quote
-     * @param date today, in format of "yyyy-MM-dd"
      * @return today's quote.
      */
     fun quote(): DailyQuote?

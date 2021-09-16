@@ -68,7 +68,7 @@ class IcibaPolyglot() : AbstractPolyglot(URL) {
     }
 
     override fun query(): String {
-        println(ParamUtils.concatUrl(url, queries))
+//        println(ParamUtils.concatUrl(url, queries))
         val request = HttpPost(ParamUtils.concatUrl(url, queries))
         request.entity = UrlEncodedFormEntity(ParamUtils.map2List(formData), "UTF-8")
         request.setHeader("Content-Type", "application/x-www-form-urlencoded")
@@ -79,7 +79,7 @@ class IcibaPolyglot() : AbstractPolyglot(URL) {
         val response = httpClient.execute(request)
         val entity = response.entity
         val result = EntityUtils.toString(entity, "utf-8")
-        println(response)
+//        println(response)
         close(entity, response)
         return result
     }

@@ -1,19 +1,15 @@
 package me.bytebeats.polyglot.dict.impl
 
-import com.sun.javafx.fxml.builder.URLBuilder
 import me.bytebeats.polyglot.dict.AbstractDictionary
 import me.bytebeats.polyglot.dict.DictConsultListener
 import me.bytebeats.polyglot.dict.meta.YouDaoTranslation
 import me.bytebeats.polyglot.lang.Lang
-import me.bytebeats.polyglot.ui.PolyglotSettingState
 import me.bytebeats.polyglot.util.GsonUtils
 import me.bytebeats.polyglot.util.ParamUtils
-import me.bytebeats.polyglot.util.googleHost
 import me.bytebeats.polyglot.util.tk
 import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.util.EntityUtils
-import java.util.*
 
 /**
  * @Author bytebeats

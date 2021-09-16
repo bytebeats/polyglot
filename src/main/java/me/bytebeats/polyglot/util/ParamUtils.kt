@@ -4,7 +4,6 @@ import org.apache.http.NameValuePair
 import org.apache.http.message.BasicNameValuePair
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
-import java.nio.charset.Charset
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 

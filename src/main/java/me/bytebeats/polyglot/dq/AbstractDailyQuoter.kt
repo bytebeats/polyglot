@@ -43,7 +43,7 @@ abstract class AbstractDailyQuoter(url: String) : DailyQuoteConnectionCloser(url
      * @throws IOException if the parsing fails.
      */
     @Throws(IOException::class)
-    protected abstract fun parse(text: String): DailyQuote?
+    protected abstract fun parse(text: String?): DailyQuote?
 
     override fun quote(): DailyQuote? {
         var dailyQuote: DailyQuote? = null
