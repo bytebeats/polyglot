@@ -3,7 +3,7 @@
     <name>Polyglot Translator</name>
     <version>1.3.4</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <idea-version since-build="183.*" />
+    <idea-version since-build="193.*" />
 
     <description><![CDATA[
       Polyglot: to translate different languages with different translators!</br>
