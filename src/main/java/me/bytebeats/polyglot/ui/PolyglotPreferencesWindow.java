@@ -152,13 +152,13 @@ public class PolyglotPreferencesWindow implements Configurable {
         consult_dict_cb.setSelected(PolyglotSettingState.getInstance().isSelectWordToConsultOn());
         daily_quote_providers.setSelectedIndex(0);
         dict_target_cb.setSelectedIndex(0);
-        dict_app_id.setText(dict_app_id.getToolTipText());
-        dict_app_key.setText(dict_app_key.getToolTipText());
+        dict_app_id.setText(PolyglotSettingState.getInstance().getAppID());
+        dict_app_key.setText(PolyglotSettingState.getInstance().getAppKey());
     }
 
     @Override
     public void disposeUIResources() {
-
+        polyglot_pref_panel = null;
     }
 
     @Override
@@ -167,7 +167,7 @@ public class PolyglotPreferencesWindow implements Configurable {
     }
 
     private void createUIComponents() {
-        dict_app_key = new JHintTextField("Enter App ID here");
-        dict_app_id = new JHintTextField("Enter App Key here");
+        dict_app_id = new JHintTextField("Enter App ID here");
+        dict_app_key = new JHintTextField("Enter App Key here");
     }
 }
