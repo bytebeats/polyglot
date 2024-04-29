@@ -22,7 +22,7 @@ A good plugin is No.1 productive force!
 
 ## Installation
  
- *  Download `plugin/polyglot-x.x.x.jar` and install into your IDE
+ *  Download `plugins/polyglot-x.x.x.jar` and install into your IDE
  *  clone this project, **Build | Build project**, then you will see **build/libs/polyglot-x.x.x.jar**
  *  **Intellij IDEA** -> **Preferences** -> **Plugins** -> Settings -> **Install from Disk**, select and load **polyglot-x.x.x.jar** or search **polyglot** from MarketPlace, then click and install **polyglot**
 
@@ -44,10 +44,10 @@ A good plugin is No.1 productive force!
  *  添加 Android 多语言字符串支持
 
 ## Support
- <br>Open-source is no easy job, for which I have to sacrifice my weekends and other non-working hours.</br>
- <br>开源不易, 尤其是对于全职的开源爱好者. 需要占用不少下班以及周末时间.</br>
- <br>If you think this plugin is meaningful, is worthy, you are welcome to support this project by following:</br>
- <br>如果您觉着这个项目是值得做的, 是做的有意义的, 可以通过以下方式来表达支持: </br>
+ <br>Open-source is no easy job, for which I have to sacrifice my weekends and other non-working hours.
+ <br>开源不易, 尤其是对于全职的开源爱好者. 需要占用不少下班以及周末时间.
+ <br>If you think this plugin is meaningful, is worthy, you are welcome to support this project by following:
+ <br>如果您觉着这个项目是值得做的, 是做的有意义的, 可以通过以下方式来表达支持:
  
  * [<b>Watch/Star/Fork</b>](https://github.com/bytebeats/polyglot) this project. [关注/标星/Fork](https://github.com/bytebeats/polyglot) 该项目.
  * Share/Recommend this plugin(<b>polyglot</b>) to your friends/work mates. 向朋友或者同事推荐该插件.
@@ -56,20 +56,20 @@ A good plugin is No.1 productive force!
  * Create [Issue](https://github.com/bytebeats/polyglot/issues) s. 反馈问题, 提供您的建议或者想法.
  * If you love this plugin, you may donate for maintain this project and this plugin. 如果你喜欢这个插件, 可以考虑捐赠, 以持续地对该项目跟插件进行维护.
  
-     Open Collective | 支付宝/Alipay | 微信/Wechat | PayPal
-     -------------- | -------------- | -------------- | --------------
-     <a href=https://opencollective.com/polyglot-collective>polyglot Collective</a> | ![alipay](receipts/alipay_receipt.png) | ![wechat](receipts/wechat_receipt.png) | <a href=https://www.paypal.me/bytesbeat>Support</a>
- 
- <br>使用支付宝/微信支付捐赠后请留言或者通过邮件提供您的名字/昵称和网站，格式为：</br>
- <br>名字/昵称 [<网站>][：留言]（网站与留言为可选部分，例子：bytebeats <github.com/bytebeats>：加油！）</br>
- <br>您提供的名字、网站和捐赠总额将会被添加到捐赠者列表中。</br>
- <br>邮箱地址：<a href="mailto:happychinapc@gmail.com?subject=polyglot捐赠&body=你做的工作很有意义, 加油!">happychinapc@gmail.com</a></br>
- <br>感谢您的支持！</br>
+   | Open Collective                                                                | 支付宝/Alipay                             | 微信/Wechat                              | PayPal                                              |
+   |--------------------------------------------------------------------------------|----------------------------------------|----------------------------------------|-----------------------------------------------------|
+   | <a href=https://opencollective.com/polyglot-collective>polyglot Collective</a> | ![alipay](receipts/alipay_receipt.png) | ![wechat](receipts/wechat_receipt.png) | <a href=https://www.paypal.me/bytesbeat>Support</a> |
+
+ <br>使用支付宝/微信支付捐赠后请留言或者通过邮件提供您的名字/昵称和网站，格式为：
+ <br>名字/昵称 [<网站>][：留言]（网站与留言为可选部分，例子：bytebeats <github.com/bytebeats>：加油！）
+ <br>您提供的名字、网站和捐赠总额将会被添加到捐赠者列表中。
+ <br>邮箱地址：<a href="mailto:happychinapc@gmail.com?subject=polyglot捐赠&body=你做的工作很有意义, 加油!">happychinapc@gmail.com</a>
+ <br>感谢您的支持!
 
 ## More plugins
  * [mns](https://github.com/bytebeats/mns) Money Never Sleeps
  * [kfiglet](https://github.com/bytebeats/JsonMaster)
- * [kfiglet](https://github.com/bytebeats/kfiglet) Ascii Arts
+ * [ascii-arts](https://github.com/bytebeats/kfiglet) Ascii Arts
 
 ## Stargazers over time
 [![Stargazers over time](https://starchart.cc/bytebeats/polyglot.svg)](https://starchart.cc/bytebeats/polyglot)

@@ -99,9 +99,8 @@ class BaiduDictionary(listener: DictConsultListener) : AbstractDictionary(listen
 //        val appKey = PolyglotSettingState.getInstance().appKey
         val appID = "20201107000610694"
         val appKey = "kwjKCeUUNitS4tnwuO1K"
-        val curTime = System.currentTimeMillis().toString()
         val salt = UUID.randomUUID().toString()
-        val sign = ParamUtils.md5("$appID$text$salt$appKey")?.toLowerCase()
+        val sign = ParamUtils.md5("$appID$text$salt$appKey")?.lowercase()
         formData["from"] = langs[Lang.EN]!!
         formData["to"] = langs[to]!!
         formData["appid"] = appID

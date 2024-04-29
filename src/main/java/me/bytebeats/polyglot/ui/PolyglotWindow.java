@@ -65,7 +65,7 @@ public class PolyglotWindow implements ToolWindowFactory {
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-        ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
+        ContentFactory contentFactory = ContentFactory.getInstance();
         Content polyglotContent = contentFactory.createContent(polyglot_panel, "", true);
         toolWindow.getContentManager().addContent(polyglotContent);
         plgt_translate_btn.addActionListener(e -> {

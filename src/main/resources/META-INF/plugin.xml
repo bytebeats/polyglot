@@ -3,7 +3,7 @@
     <name>Polyglot Translator</name>
     <version>1.3.5</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <idea-version since-build="183.*" />
+    <idea-version since-build="230.*"/>
 
     <description><![CDATA[
       Polyglot: to translate different languages with different translators!</br>
@@ -36,21 +36,33 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="me.bytebeats.polyglot.ui.PolyglotSettingState" />
-        <toolWindow icon="/icon_polyglot.png" anchor="left" id="polyglot"
-            factoryClass="me.bytebeats.polyglot.ui.PolyglotWindow" />
-        <applicationConfigurable id="polyglot_setting" instance="me.bytebeats.polyglot.ui.PolyglotPreferencesWindow"
-            displayName="Polyglot Translator" />
-        <notificationGroup displayType="NONE" id="Polyglot" icon="AllIcons.General.Note" key="notification.group.log"
-            toolWindowId="Polyglot" isLogByDefault="true" />
+        <applicationService
+                serviceImplementation="me.bytebeats.polyglot.ui.PolyglotSettingState"/>
+
+        <toolWindow id="polyglot"
+                    icon="/icon_polyglot.png"
+                    anchor="left"
+                    factoryClass="me.bytebeats.polyglot.ui.PolyglotWindow"/>
+
+        <applicationConfigurable
+                id="polyglot_setting"
+                displayName="Polyglot Translator"
+                instance="me.bytebeats.polyglot.ui.PolyglotPreferencesWindow"/>
+
+        <notificationGroup
+                id="Polyglot"
+                displayType="BALLOON"
+                toolWindowId="Polyglot"
+                isLogByDefault="true"/>
     </extensions>
 
     <actions>
-        <action class="me.bytebeats.polyglot.dict.action.ConsultDictAction" id="PolyglotDictionaryActionId">
-            <add-to-group group-id="EditMenu" anchor="last" />
-            <add-to-group group-id="EditorPopupMenu" anchor="first" />
-            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="first" />
-            <keyboard-shortcut first-keystroke="ctrl alt P" keymap="$default" second-keystroke="ctrl alt shift P" />
+        <action id="PolyglotDictionaryActionId"
+                class="me.bytebeats.polyglot.dict.action.ConsultDictAction">
+            <add-to-group group-id="EditMenu" anchor="last"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut first-keystroke="ctrl alt P" keymap="$default" second-keystroke="ctrl alt shift P"/>
         </action>
     </actions>
 

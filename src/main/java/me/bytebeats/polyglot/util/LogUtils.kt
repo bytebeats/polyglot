@@ -1,8 +1,8 @@
 package me.bytebeats.polyglot.util
 
-import com.intellij.notification.NotificationGroup
+import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
-import com.intellij.openapi.project.ex.ProjectManagerEx
+
 
 /**
  * @author bytebeats
@@ -14,13 +14,10 @@ import com.intellij.openapi.project.ex.ProjectManagerEx
  */
 
 object LogUtils {
-    private val NOTIFICATION_GROUP = NotificationGroup.logOnlyGroup("Polyglot")
+    private const val NOTIFICATION_GROUP_ID = "Polyglot"
     fun info(message: String?) {
-        message?.apply {
-            if (isNotEmpty()) {
-                NOTIFICATION_GROUP.createNotification("Polyglot", this, NotificationType.INFORMATION, null)
-                    .notify(ProjectManagerEx.getInstanceEx().defaultProject)
-            }
-        }
+        NotificationGroupManager.getInstance()
+            .getNotificationGroup(NOTIFICATION_GROUP_ID)
+            .createNotification(message ?: "", NotificationType.INFORMATION)
     }
 }

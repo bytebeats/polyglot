@@ -1,0 +1,10 @@
+[versions]
+jackson-core = "2.17.0"
+
+[libraries]
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson-core" }
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jackson-core" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson-core" }
+
+[bundles]
+jacksonCore = ["jackson-annotations", "jackson-core", "jackson-databind"]
