@@ -26,7 +26,7 @@ import java.util.List;
  * @author bytebeats
  * @version 1.0
  * @email <happychinapc@gmail.com>
- * @github https://github.com/bytebeats
+ * @github <a href="https://github.com/bytebeats">bytebeats</a>
  * @created on 2020/9/5 22:09
  * @description PolyglotWindow displays window where translation is executed.
  */
@@ -241,10 +241,5 @@ public class PolyglotWindow implements ToolWindowFactory {
     @Override
     public boolean shouldBeAvailable(@NotNull Project project) {
         return true;//is window visible when ide starts up.
-    }
-
-    @Override
-    public boolean isApplicable(@NotNull Project project) {
-        return true;
     }
 }
