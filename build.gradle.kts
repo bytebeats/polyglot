@@ -8,7 +8,7 @@ apply(plugin = "kotlin")
 apply(plugin = "org.jetbrains.intellij")
 
 group = "io.github.bytebeats"
-version = "1.3.5"
+version = "1.3.6"
 
 repositories {
     maven {
@@ -53,7 +53,7 @@ tasks {
 
         changeNotes.set(
             """
-      v1.3.4 update configurations and refactor codes.<br>
+      v1.3.6 project upgrade.<br>
       """
         )
     }

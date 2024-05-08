@@ -55,7 +55,7 @@ public class PolyglotWindow implements ToolWindowFactory {
     private JLabel daily_quote_content;
     private JLabel daily_quote_translation;
     private JLabel lang_pref_label;
-    private JComboBox preferred_langs_cb;
+    private JComboBox<String> preferred_langs_cb;
 
     private String from = PolyglotSettingState.getInstance().getFrom();
     private String to = PolyglotSettingState.getInstance().getTo();
