@@ -1,5 +1,5 @@
 [versions]
-jackson-core = "2.17.0"
+jackson-core = "2.19.0"
 
 [libraries]
 jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson-core" }

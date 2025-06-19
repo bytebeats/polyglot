@@ -1,9 +1,9 @@
 <idea-plugin>
     <id>me.bytebeats.polyglot</id>
     <name>Polyglot Translator</name>
-    <version>1.3.6</version>
+    <version>1.4.o</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <idea-version since-build="230.*"/>
+    <idea-version since-build="242"/>
 
     <description><![CDATA[
       Polyglot: to translate different languages with different translators!</br>
@@ -29,6 +29,7 @@
       v1.3.2, v1.3.3 bugs fixed.<br>
       v1.3.4 update configurations and refactor codes.<br>
       v1.3.6 project upgrade.<br>
+      v1.4.0 regular upgrade with Java 21 and Idea 2025.<br>
     ]]>
     </change-notes>
 
