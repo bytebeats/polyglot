@@ -1,4 +1,5 @@
 plugins {
+    application
     id("java")
     id("org.jetbrains.kotlin.jvm") version "2.1.0"
     id("org.jetbrains.intellij.platform") version "2.5.0"
@@ -26,6 +27,10 @@ repositories {
     }
 }
 
+application {
+    mainClass = "me.bytebeats.polyglot.ui.PolyglotWindow"
+}
+
 dependencies {
     api(libs.bundles.jacksonCore)
     intellijPlatform {
@@ -43,6 +48,7 @@ intellijPlatform {
     pluginConfiguration {
         ideaVersion {
             sinceBuild = "242"
+            untilBuild = "251.*"
         }
 
         changeNotes = """
@@ -62,18 +68,6 @@ tasks {
         kotlinOptions.jvmTarget = "21"
     }
 
-    patchPluginXml {
-        sinceBuild.set("242")
-//        untilBuild.set("242.*")
-
-        changeNotes.set(
-            """
-      v1.3.6 project upgrade.<br>
-      v1.4.0 regular upgrade with Java 21 and Idea 2025.<br>
-      """
-        )
-    }
-
     signPlugin {
         certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
         privateKey.set(System.getenv("PRIVATE_KEY"))
@@ -89,10 +83,11 @@ tasks {
     }
 
     register<Copy>("MoveBuildArtifacts") {
+        dependsOn(named("distZip"))
         mustRunAfter("DeletePluginFiles")
         println("Moving Build Artifacts!")
         from(layout.buildDirectory.dir("distributions"))
-        include("Polyglot-**.zip")
+        include("polyglot-$version.zip")
         into("plugins")
     }
 

@@ -3,7 +3,7 @@
     <name>Polyglot Translator</name>
     <version>1.4.o</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
-    <idea-version since-build="242"/>
+    <idea-version since-build="242" until-build="251.*"/>
 
     <description><![CDATA[
       Polyglot: to translate different languages with different translators!</br>
@@ -13,25 +13,6 @@
       A good plugin is No.1 productive force. 插件是第一生产力啊!</br>
       Introduction: https://github.com/bytebeats/polyglot</br>
     ]]></description>
-
-    <change-notes><![CDATA[
-      v1.0.0 provided translation service from different translators like Baidu, Bing, Google, Sogou, Youdao, Omi, Tencent.<br>
-      提供了百度, 必应, 谷歌, 搜狗, 有道, 欧米, 腾讯等多种翻译器来提供翻译服务.<br>
-      v1.0.1 updated configure files.<br>
-      更新了相关配置.<br>
-      v1.0.2 supported switching source and target languages.<br>
-      v1.1.0 offers daily quote service for English lover.<br>
-      v1.1.1 ui bugs.<br>
-      v1.1.2 preferred language.<br>
-      v1.2.0 automatically detect source language.<br>
-      v1.3.0 consult a dictionary to translate the selected words.<br>
-      v1.3.1 optimized translation result.<br>
-      v1.3.2, v1.3.3 bugs fixed.<br>
-      v1.3.4 update configurations and refactor codes.<br>
-      v1.3.6 project upgrade.<br>
-      v1.4.0 regular upgrade with Java 21 and Idea 2025.<br>
-    ]]>
-    </change-notes>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
