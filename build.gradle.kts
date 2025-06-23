@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     application
@@ -66,7 +67,7 @@ tasks {
         sourceCompatibility = JavaVersion.VERSION_21.toString()
         targetCompatibility = JavaVersion.VERSION_21.toString()
     }
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    withType<KotlinCompile> {
         compilerOptions.jvmTarget.set(JvmTarget.JVM_21)
     }
 
