@@ -7,11 +7,12 @@ import me.bytebeats.polyglot.tlr.AbstractPolyglot
 import me.bytebeats.polyglot.util.GlotJsUtils
 import me.bytebeats.polyglot.util.LogUtils
 import me.bytebeats.polyglot.util.ParamUtils
+import me.bytebeats.polyglot.util.findGraalScriptEngine
 import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.util.EntityUtils
 import javax.script.Invocable
-import javax.script.ScriptEngineManager
+import javax.script.ScriptException
 
 /**
  * @author bytebeats
@@ -51,35 +52,13 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
     }
 
     /**
-     * {
-    "data": {
-    "detect": {
-    "zly": "zly",
-    "detect": "zh-CHS",
-    "errorCode": "0",
-    "language": "中文",
-    "id": "a0761c8f8d35a43b130976bb5718504c",
-    "text": "忧郁的小乌龟"
-    },
-    "translate": {
-    "qc_type": "1",
-    "zly": "zly",
-    "errorCode": "10",
-    "index": "content0",
-    "from": "zh-CHS",
-    "source": "sogou",
-    "text": "忧郁的小乌龟",
-    "to": "en",
-    "id": "a0761c8f8d35a43b130976bb5718504c",
-    "dit": "憂鬱的小烏龜",
-    "orig_text": "忧郁的小乌龟",
-    "md5": ""
-    }
-    },
-    "status": "0",
-    "info": "success",
-    "zly": "zly"
-    }
+     * { "data": { "detect": { "zly": "zly", "detect": "zh-CHS", "errorCode":
+     * "0", "language": "中文", "id": "a0761c8f8d35a43b130976bb5718504c", "text":
+     * "忧郁的小乌龟" }, "translate": { "qc_type": "1", "zly": "zly", "errorCode":
+     * "10", "index": "content0", "from": "zh-CHS", "source": "sogou", "text":
+     * "忧郁的小乌龟", "to": "en", "id": "a0761c8f8d35a43b130976bb5718504c",
+     * "dit": "憂鬱的小烏龜", "orig_text": "忧郁的小乌龟", "md5": "" }
+     * }, "status": "0", "info": "success", "zly": "zly" }
      */
     override fun query(): String {
         val request = HttpPost(url)
@@ -128,13 +107,17 @@ class SogouPolyglot() : AbstractPolyglot(URL) {
 
     private fun token(): String {
         try {
-            val engine = ScriptEngineManager().getEngineByName("js")
+            val engine = findGraalScriptEngine()
             val reader = GlotJsUtils.getReader(GlotJsUtils.JS_SOGOU)
             engine.eval(reader)
             if (engine is Invocable) {
                 return engine.invokeFunction("token").toString()
+            } else {
+                throw IllegalStateException("$engine is not invocable")
             }
-        } catch (e: Exception) {
+        } catch (e: ScriptException) {
+            LogUtils.info(e.message)
+        } catch (e: NoSuchMethodException) {
             LogUtils.info(e.message)
         }
         return ""

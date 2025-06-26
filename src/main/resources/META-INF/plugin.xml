@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>me.bytebeats.polyglot</id>
     <name>Polyglot Translator</name>
-    <version>1.4.o</version>
+    <version>1.4.0</version>
     <vendor email="happychinapc@gmail.com" url="https://github.com/bytebeats">bytebeats</vendor>
     <idea-version since-build="242" until-build="251.*"/>
 

@@ -1,10 +1,14 @@
 [versions]
 jackson-core = "2.19.0"
+graal-js = "24.2.1"
 
 [libraries]
-jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson-core" }
-jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jackson-core" }
-jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson-core" }
+jackson-annotations = { group = "com.fasterxml.jackson.core", name = "jackson-annotations", version.ref = "jackson-core" }
+jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jackson-core" }
+jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson-core" }
+graalvm-js-scriptengine = { group = "org.graalvm.js", name = "js-scriptengine", version.ref = "graal-js" }
+graalvm-polyglot-js = { group = "org.graalvm.polyglot", name = "js", version.ref = "graal-js" }
 
 [bundles]
 jacksonCore = ["jackson-annotations", "jackson-core", "jackson-databind"]
+graalJs = ["graalvm-js-scriptengine", "graalvm-polyglot-js"]

@@ -6,11 +6,12 @@ import me.bytebeats.polyglot.tlr.AbstractPolyglot
 import me.bytebeats.polyglot.ui.PolyglotSettingState
 import me.bytebeats.polyglot.util.GlotJsUtils
 import me.bytebeats.polyglot.util.LogUtils
+import me.bytebeats.polyglot.util.findGraalScriptEngine
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.client.utils.URIBuilder
 import org.apache.http.util.EntityUtils
 import javax.script.Invocable
-import javax.script.ScriptEngineManager
+import javax.script.ScriptException
 
 /**
  * @author bytebeats
@@ -18,7 +19,8 @@ import javax.script.ScriptEngineManager
  * @github https://github.com/bytebeats
  * @created on 2020/8/30 00:18
  * @version 1.0
- * @description GooglePolyglot depends on Google-translate-cn to offer translation service
+ * @description GooglePolyglot depends on Google-translate-cn to offer
+ *    translation service
  */
 
 class GooglePolyglot() : AbstractPolyglot(URL_CN) {
@@ -104,13 +106,17 @@ class GooglePolyglot() : AbstractPolyglot(URL_CN) {
 
     private fun token(text: String): String {
         try {
-            val engine = ScriptEngineManager().getEngineByName("js")
+            val engine = findGraalScriptEngine()
             val reader = GlotJsUtils.getReader(GlotJsUtils.JS_GOOGLE)
             engine.eval(reader)
             if (engine is Invocable) {
                 return engine.invokeFunction("token", text).toString()
+            } else {
+                throw IllegalStateException("$engine is not invocable")
             }
-        } catch (e: Exception) {
+        } catch (e: ScriptException) {
+            LogUtils.info(e.message)
+        } catch (e: NoSuchMethodException) {
             LogUtils.info(e.message)
         }
         return ""
